@@ -1,0 +1,23 @@
+.authBlock {
+	display: grid;
+	align-items: center;
+
+	height: 100vh;
+	min-height: 600px;
+	margin-bottom: 20px;
+	justify-items: center;
+}
+
+@media (max-width: 1024px) {
+	.authBlock {
+		grid-template-columns: 100%;
+
+		height: 60vh;
+	}
+}
+
+@media (max-width: 580px) {
+	.authBlock {
+		height: 80vh;
+	}
+}
