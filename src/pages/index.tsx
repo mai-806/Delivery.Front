@@ -14,6 +14,8 @@ function Home(): JSX.Element {
     pageHelper(router, setIsAuth);
   }, [router]);
 
+  console.log(isAuth);
+
   return (
     <HomePage theme={theme} isAuth={isAuth} />
   );
