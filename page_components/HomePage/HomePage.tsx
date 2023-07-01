@@ -8,8 +8,8 @@ import cn from 'classnames';
 
 
 export const HomePage = ({ theme, isAuth }: HomePageProps): JSX.Element => {
-    const router = useRouter();
     const context = useContext(AppContext);
+    const router = useRouter();
 
     const [themeState, setThemeState] = useState<string>(theme);
     const setTheme = (newTheme: string) => {
@@ -27,7 +27,7 @@ export const HomePage = ({ theme, isAuth }: HomePageProps): JSX.Element => {
     let text: string;
 
     if (isAuth) {
-        text = "Sign Out";
+        text = "Profile";
     } else {
         text = "Auth";
     }
@@ -39,11 +39,14 @@ export const HomePage = ({ theme, isAuth }: HomePageProps): JSX.Element => {
             })}>
                 <button onClick={() => {
                     if (isAuth) {
-                        localStorage.clear();
+                        router.push('/profile');
                     } else {
                         router.push('/auth');
                     }
                 }}>{text}</button>
+                <button onClick={() => {
+                    router.push('/basket');
+                }}>Basket</button>
                 <button onClick={() => {
                     context.setTheme?.(newTheme);
                     setTheme?.(newTheme);
