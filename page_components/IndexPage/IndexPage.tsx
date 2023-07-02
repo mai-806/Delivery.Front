@@ -1,11 +1,11 @@
-import styles from './AuthPage.module.css';
+import styles from './IndexPage.module.css';
 import { AuthForm } from 'components/AuthForm/AuthForm';
 import { useState } from 'react';
 import { AuthBlock } from 'components/AuthBlock/AuthBlock';
 import { Toaster } from 'react-hot-toast';
 
 
-export const AuthPage = (): JSX.Element => {
+export const IndexPage = (): JSX.Element => {
     const [authState, setAuthState] = useState<'login' | 'registration'>('login');
 
     return (

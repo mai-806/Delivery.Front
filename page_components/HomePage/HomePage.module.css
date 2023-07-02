@@ -1,6 +1,6 @@
 .homeWrapper {
 	display: grid;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 200px 200px;
     gap: 10px;
 
 	width: 100%;

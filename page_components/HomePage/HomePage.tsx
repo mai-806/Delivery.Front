@@ -7,9 +7,11 @@ import { AppContext } from 'context/app.context';
 import cn from 'classnames';
 
 
-export const HomePage = ({ theme, isAuth }: HomePageProps): JSX.Element => {
-    const context = useContext(AppContext);
+export const HomePage = ({ theme }: HomePageProps): JSX.Element => {
     const router = useRouter();
+    const context = useContext(AppContext);
+
+    const myName: string = "Ivan";
 
     const [themeState, setThemeState] = useState<string>(theme);
     const setTheme = (newTheme: string) => {
@@ -24,29 +26,14 @@ export const HomePage = ({ theme, isAuth }: HomePageProps): JSX.Element => {
         newTheme = 'light';
     }
 
-    let text: string;
-
-    if (isAuth) {
-        text = "Profile";
-    } else {
-        text = "Auth";
-    }
-
     return (
         <AppContextProvider theme={theme}>
             <div className={cn(styles.homeWrapper, {
                 [styles.darkThemeWrapper]: themeState === 'dark',
             })}>
                 <button onClick={() => {
-                    if (isAuth) {
-                        router.push('/profile');
-                    } else {
-                        router.push('/auth');
-                    }
-                }}>{text}</button>
-                <button onClick={() => {
-                    router.push('/basket');
-                }}>Basket</button>
+                    router.push('/profile');
+                }}>Profile</button>
                 <button onClick={() => {
                     context.setTheme?.(newTheme);
                     setTheme?.(newTheme);

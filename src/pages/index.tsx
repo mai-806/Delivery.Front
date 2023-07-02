@@ -1,25 +1,27 @@
-import { pageHelper } from "helpers/pages.helper";
+import { IndexPage } from "page_components/IndexPage/IndexPage";
 import { useRouter } from "next/router";
-import { HomePage } from "page_components/HomePage/HomePage";
 import { useEffect, useState } from "react";
+import { indexPageHelper } from 'helpers/pages.helper';
 
-
-function Home(): JSX.Element {
+function Index(): JSX.Element {
   const router = useRouter();
-  const [theme, setTheme] = useState<string>('light');
 
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean>(true);
 
   useEffect(() => {
-    pageHelper(router, setIsAuth);
+    indexPageHelper(router, setIsAuth);
   }, [router]);
 
-  console.log(isAuth);
-
-  return (
-    <HomePage theme={theme} isAuth={isAuth} />
-  );
+  if (!isAuth) {
+    return (
+      <IndexPage />
+    );
+  } else {
+    return (
+      <></>
+    );
+  }
 }
 
-export default Home;
+export default Index;
 

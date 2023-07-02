@@ -1,12 +1,9 @@
-import { ProfilePage } from "page_components/ProfilePage/ProfilePage";
+import { HomePage } from "page_components/HomePage/HomePage";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Head from "next/head";
-import { pageHelper } from "helpers/pages.helper";
-import { setLocale } from "helpers/locale.helper";
+import { pageHelper } from 'helpers/pages.helper';
 
-
-function Profile(): JSX.Element {
+function Home(): JSX.Element {
   const router = useRouter();
 
   const [isAuth, setIsAuth] = useState<boolean>(false);
@@ -19,10 +16,7 @@ function Profile(): JSX.Element {
   if (isAuth) {
     return (
       <>
-        <Head>
-          <title>{'Delivery - ' + setLocale(router.locale).profile}</title>
-        </Head>
-        <ProfilePage theme={theme} />
+        <HomePage theme={theme} />
       </>
     );
   } else {
@@ -32,4 +26,4 @@ function Profile(): JSX.Element {
   }
 }
 
-export default Profile;
+export default Home;
