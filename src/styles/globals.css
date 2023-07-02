@@ -46,14 +46,15 @@ a {
 }
 
 :root {
-	--primary: #0080FF;
+	--primary: #BCA48F;
 	--dark: #1F1F1F;
 	--darkTheme: #0F0F0F;
 	--darkTheme_light: #4D4D4D;
-	--light: #DDD;
+	--light: #E3CFBF;
 	--lighter: #F0F0F0;
 	--white: white;
 	--error: #FF1500;
 	--like: #E44;
-	--font-family: 'Roboto', sans-serif;
+	--footer: #E8E9EB;
+	--font-family: 'Inter', sans-serif;
 }

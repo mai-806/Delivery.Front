@@ -1,7 +1,7 @@
 export const de = {
     locale: "de",
     language: "Deutsch",
-    title: "Willkommen zu ",
+    welcome: "Willkommen!",
     error404: "Seite nicht gefunden, Fehler 404",
     error500: "Serverausfall, Fehler 500",
     email: "E-mail",
@@ -43,7 +43,11 @@ export const de = {
     online: "online",
     at: "um",
     about: 'Über uns',
-    ecosystem: 'Ökosystem',
-    explore: 'Erkunden',
-    wallet: 'Geldbörse',
+    ecosystem: "Ökosystem",
+    explore: "Erkunden",
+    wallet: "Geldbörse",
+    basket: "Korb",
+    auth: "Auth",
+    or: "oder",
+    forgot_password: "Passwort vergessen?",
 };

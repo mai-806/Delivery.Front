@@ -1,32 +1,37 @@
-.formChange {
-	width: max-content;
-	margin-top: 80px;
-}
+.button {
+	width: 222px;
+	height: 50px;
 
-.signSpan {
+	margin-top: 5px;
+	padding: 5px;
+
 	cursor: pointer;
-	user-select: none;
 	transition-duration: 300ms;
 
-	color: var(--dark);
+	color: var(--white);
+	border: none;
+	border-radius: 18px;
+	background: var(--primary);
 
-	font-weight: 600;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.5rem;
 }
 
-.signSpan:active {
+.button:active {
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 	color: var(--primary);
-}
-
-.authChange {
-	text-align: center;
+	outline: 1px solid var(--primary);
+	background: var(--light);
 }
 
 @media (min-width: 1024px) {
-	.signSpan:hover {
+	.button:hover {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 		color: var(--primary);
+		outline: 1px solid var(--primary);
+		background: var(--light);
 	}
 }

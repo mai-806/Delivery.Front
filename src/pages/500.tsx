@@ -16,7 +16,7 @@ function PageServerFailure(): JSX.Element {
 	return (
 		<>
 			<Head>
-				<title>{'tBench - 500'}</title>
+				<title>{process.env.NEXT_PUBLIC_TITLE + ' - 500'}</title>
 			</Head>
 			<ErrorPage error={500} theme={theme} />
 		</>

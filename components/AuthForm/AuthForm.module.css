@@ -1,16 +1,47 @@
 .authForm {
 	display: grid;
 
-	width: 90%;
+	width: 100%;
 	max-width: 300px;
 	height: fit-content;
 	padding: 40px;
 
-	border-radius: 20px;
-	background: var(--white);
+	border-radius: 50px;
+	background: var(--light);
 	gap: 12px;
 	justify-items: center;
 	filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+}
+
+.text,
+.slogan,
+.forgot {
+	font-weight: 200;
+}
+
+.slogan {
+	text-align: center;
+	margin: 0;
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+
+.forgot {
+	cursor: pointer;
+	color: var(--dark);
+	transition-duration: 300ms;
+}
+
+.forgot:active {
+	color: var(--primary);
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 1024px) {
+	.forgot:hover {
+		color: var(--primary);
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	}
 }
 
 @media (max-width: 580px) {
