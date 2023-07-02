@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { AppContextProvider } from 'context/app.context';
 import { useContext, useState } from 'react';
 import { AppContext } from 'context/app.context';
+import { setLocale } from 'helpers/locale.helper';
 import cn from 'classnames';
 
 
@@ -33,7 +34,7 @@ export const HomePage = ({ theme }: HomePageProps): JSX.Element => {
             })}>
                 <button onClick={() => {
                     router.push('/profile');
-                }}>Profile</button>
+                }}>{setLocale(router.locale).profile}</button>
                 <button onClick={() => {
                     context.setTheme?.(newTheme);
                     setTheme?.(newTheme);

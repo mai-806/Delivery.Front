@@ -3,6 +3,7 @@ import { AuthForm } from 'components/AuthForm/AuthForm';
 import { useState } from 'react';
 import { AuthBlock } from 'components/AuthBlock/AuthBlock';
 import { Toaster } from 'react-hot-toast';
+import { Footer } from 'components/Footer/Footer';
 
 
 export const IndexPage = (): JSX.Element => {
@@ -18,10 +19,12 @@ export const IndexPage = (): JSX.Element => {
                 }}
             />
             <div className={styles.wrapper}>
+                <div></div>
                 <AuthBlock>
                     <AuthForm type={authState} setAuthState={setAuthState} />
                 </AuthBlock>
             </div>
+            <Footer />
         </>
     );
 };

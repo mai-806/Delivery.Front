@@ -1,0 +1,19 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+}
+
+.text {
+    margin-top: 5px;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 10px 0;
+    padding:  0 10px;
+}
+
+.delimiter {
+    height: 1px;
+    background: var(--dark);
+    width: 110px;
+}

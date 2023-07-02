@@ -6,7 +6,7 @@ import React from 'react';
 export default function App({ Component, pageProps }: AppProps) {
   return <>
     <Head>
-      <title>Delivery</title>
+      <title>{process.env.NEXT_PUBLIC_TITLE}</title>
       <meta name='description' content='Delivery' />
       <meta property='og:title' content='Delivery' />
       <meta property='og:description' content='Delivery' />

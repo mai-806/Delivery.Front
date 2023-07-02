@@ -20,7 +20,7 @@ function Profile(): JSX.Element {
     return (
       <>
         <Head>
-          <title>{'Delivery - ' + setLocale(router.locale).profile}</title>
+          <title>{process.env.NEXT_PUBLIC_TITLE + ' - ' + setLocale(router.locale).profile}</title>
         </Head>
         <ProfilePage theme={theme} />
       </>
