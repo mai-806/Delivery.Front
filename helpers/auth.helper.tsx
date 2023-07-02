@@ -27,9 +27,12 @@ export async function checkUser(authData: Array<string>, errType: CheckAuthInter
 
 export async function loginUser(authData: Array<string>, router: any) {
     localStorage.setItem('logged_in', 'true');
+    localStorage.setItem('user_type', authData[3]);
     router.push('/home');
 }
 
 export async function registerUser(authData: Array<string>, router: any) {
-    alert('register');
+    localStorage.setItem('logged_in', 'true');
+    localStorage.setItem('user_type', authData[3]);
+    router.push('/home');
 }

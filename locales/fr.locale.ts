@@ -50,4 +50,7 @@ export const fr = {
     auth: "Auth",
     or: "ou",
     forgot_password: "Mot de passe oublié?",
+    customer: "Сlient",
+    executor: "Exécuteur",
+    admin: "Admin",
 };
