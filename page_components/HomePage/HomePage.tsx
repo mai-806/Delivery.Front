@@ -6,6 +6,7 @@ import { useContext, useState } from 'react';
 import { AppContext } from 'context/app.context';
 import { setLocale } from 'helpers/locale.helper';
 import cn from 'classnames';
+import { Footer } from 'components/Footer/Footer';
 
 
 export const HomePage = ({ theme }: HomePageProps): JSX.Element => {
@@ -41,6 +42,7 @@ export const HomePage = ({ theme }: HomePageProps): JSX.Element => {
                     localStorage.setItem('theme', newTheme);
                 }}>Change Theme</button>
             </div>
+            <Footer
         </AppContextProvider>
     );
 }
