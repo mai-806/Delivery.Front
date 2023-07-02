@@ -1,0 +1,48 @@
+.genderChangeBlock {
+	display: grid;
+	align-items: center;
+	grid-template-columns: auto auto auto;
+}
+
+.genderChangeBlock > h2 {
+	padding: 3px 15px;
+
+	cursor: pointer;
+	transition-duration: 300ms;
+}
+
+.genderChangeBlock > h2:active {
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+	border-radius: 9999px;
+
+	background: var(--lighter);
+}
+
+.genderActive {
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+	color: var(--primary);
+
+	border-radius: 9999px;
+
+	background: var(--lighter);
+
+	font-weight: 500;
+}
+
+@media (min-width: 1024px) {
+	.genderChangeBlock > h2:hover {
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+		border-radius: 9999px;
+
+		background: var(--lighter);
+	}
+}
+
+@media (max-width: 580px) {
+	.genderChangeBlock > h2 {
+		padding: 3px 10px;
+	}
+}

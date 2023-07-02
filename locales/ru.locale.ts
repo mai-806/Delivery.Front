@@ -50,4 +50,7 @@ export const ru = {
     auth: "Авторизация",
     or: "или",
     forgot_password: "Забыли пароль?",
+    customer: "Заказчик",
+    executor: "Исполнитель",
+    admin: "Админ",
 };

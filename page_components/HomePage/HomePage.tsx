@@ -9,7 +9,7 @@ import cn from 'classnames';
 import { Footer } from 'components/Footer/Footer';
 
 
-export const HomePage = ({ theme }: HomePageProps): JSX.Element => {
+export const HomePage = ({ theme, userType }: HomePageProps): JSX.Element => {
     const router = useRouter();
     const context = useContext(AppContext);
 
@@ -28,21 +28,62 @@ export const HomePage = ({ theme }: HomePageProps): JSX.Element => {
         newTheme = 'light';
     }
 
-    return (
-        <AppContextProvider theme={theme}>
-            <div className={cn(styles.homeWrapper, {
-                [styles.darkThemeWrapper]: themeState === 'dark',
-            })}>
-                <button onClick={() => {
-                    router.push('/profile');
-                }}>{setLocale(router.locale).profile}</button>
-                <button onClick={() => {
-                    context.setTheme?.(newTheme);
-                    setTheme?.(newTheme);
-                    localStorage.setItem('theme', newTheme);
-                }}>Change Theme</button>
-            </div>
-            <Footer
-        </AppContextProvider>
-    );
+    if (userType === 'customer') {
+        return (
+            <AppContextProvider theme={theme}>
+                Customer
+                <div className={cn(styles.homeWrapper, {
+                    [styles.darkThemeWrapper]: themeState === 'dark',
+                })}>
+                    <button onClick={() => {
+                        router.push('/profile');
+                    }}>{setLocale(router.locale).profile}</button>
+                    <button onClick={() => {
+                        context.setTheme?.(newTheme);
+                        setTheme?.(newTheme);
+                        localStorage.setItem('theme', newTheme);
+                    }}>Change Theme</button>
+                </div>
+                <Footer />
+            </AppContextProvider>
+        );
+    } else if (userType === 'executor') {
+        return (
+            <AppContextProvider theme={theme}>
+                Executor
+                <div className={cn(styles.homeWrapper, {
+                    [styles.darkThemeWrapper]: themeState === 'dark',
+                })}>
+                    <button onClick={() => {
+                        router.push('/profile');
+                    }}>{setLocale(router.locale).profile}</button>
+                    <button onClick={() => {
+                        context.setTheme?.(newTheme);
+                        setTheme?.(newTheme);
+                        localStorage.setItem('theme', newTheme);
+                    }}>Change Theme</button>
+                </div>
+                <Footer />
+            </AppContextProvider>
+        );
+    } else {
+        return (
+            <AppContextProvider theme={theme}>
+                Admin
+                <div className={cn(styles.homeWrapper, {
+                    [styles.darkThemeWrapper]: themeState === 'dark',
+                })}>
+                    <button onClick={() => {
+                        router.push('/profile');
+                    }}>{setLocale(router.locale).profile}</button>
+                    <button onClick={() => {
+                        context.setTheme?.(newTheme);
+                        setTheme?.(newTheme);
+                        localStorage.setItem('theme', newTheme);
+                    }}>Change Theme</button>
+                </div>
+                <Footer />
+            </AppContextProvider>
+        );
+    }
 }

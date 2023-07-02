@@ -50,4 +50,7 @@ export const zh = {
     auth: "授权",
     or: "或者",
     forgot_password: "忘记密码？",
+    customer: "客户",
+    executor: "执行者",
+    admin: "行政",
 };

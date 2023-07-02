@@ -24,3 +24,8 @@ export function pageHelper(router: any, setIsAuth: (e: any) => void, setTheme: (
 		setTheme(currentTheme);
 	}
 }
+
+export function userTypeHelper(setUserType: (e: any) => void) {
+	const userType = localStorage.getItem('user_type');
+	setUserType(userType);
+}

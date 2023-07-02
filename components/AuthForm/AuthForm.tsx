@@ -12,6 +12,7 @@ import { setLocale } from 'helpers/locale.helper';
 import { checkUser } from 'helpers/auth.helper';
 import { Htag } from 'components/Htag/Htag';
 import { AuthDelimiter } from 'components/AuthDelimiter/AuthDelimiter';
+import { UserTypeChange } from 'components/UserTypeChange/UserTypeChange';
 
 export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormProps): JSX.Element => {
 	const router = useRouter();
@@ -19,6 +20,7 @@ export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormPr
 	const [username, setUsername] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const [confirmPassword, setConfirmPassword] = useState<string>('');
+	const [userType, setUserType] = useState<'customer' | 'executor' | 'admin'>('customer');
 
 	const [pswdType, setPswdType] = useState<'email' | 'password' | 'text'>('password');
 	const [confPswdType, setConfPswdType] = useState<'email' | 'password' | 'text'>('password');
@@ -34,7 +36,7 @@ export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormPr
 
 	const [error, setError] = useState<CheckAuthInterface>(errType);
 
-	const authData = [password, confirmPassword, username];
+	const authData = [password, confirmPassword, username, userType];
 
 	const changeInputType = () => {
 		if (pswdType !== 'text') {
@@ -94,6 +96,7 @@ export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormPr
 						value={confirmPassword} error={error.errConfirmPassword} eye={true}
 						onChange={(e) => setConfirmPassword(e.target.value)} />
 				</InputWithEye>
+				<UserTypeChange userType={userType} setUserType={setUserType} />
 				<AuthButton loading={loading} text={setLocale(router.locale).sign_up}
 					onClick={() => checkUser(authData, errType, router, setError, setLoading, false)} />
 				<AuthDelimiter />
