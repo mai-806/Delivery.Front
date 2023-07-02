@@ -1,0 +1,46 @@
+.input {
+	width: 90%;
+	padding: 5px;
+	padding-left: 20px;
+
+	transition-duration: 300ms;
+
+	color: var(--primary);
+	border: 1px solid var(--dark);
+	border-radius: 9999px;
+	background: var(--white);
+	box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.5rem;
+}
+
+.input:hover {
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+	border-color: var(--primary);
+}
+
+.input:focus {
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+	outline-color: var(--primary);
+}
+
+.error_input,
+.error_input:hover,
+.error_input:focus {
+	border: 1px solid var(--error);
+	outline: 1.5px solid var(--error);
+}
+
+.eye_input {
+	width: 100%;
+}
+
+@media (max-width: 580px) {
+	.input {
+		padding-left: 15px;
+	}
+}
