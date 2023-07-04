@@ -30,6 +30,7 @@ export const Header = ({ theme, newTheme, setThemeState }: HeaderProps): JSX.Ele
         <header className={cn(styles.header, {
             [styles.darkThemeHeader]: theme === 'dark',
         })}>
+            <div className={styles.logo} />
             <Htag tag='xl' className={cn(styles.text, {
                 [styles.darkThemeText]: theme === 'dark',
             })}>{process.env.NEXT_PUBLIC_TITLE}</Htag>

@@ -26,9 +26,7 @@ export const HomePage = ({ theme, userType }: HomePageProps): JSX.Element => {
         return (
             <AppContextProvider theme={theme}>
                 <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
-                <div className={cn(styles.homeWrapper, {
-                    [styles.darkThemeWrapper]: themeState === 'dark',
-                })}>
+                <div className={styles.homeWrapper}>
                     Customer
                 </div>
                 <Footer theme={themeState} />
@@ -38,9 +36,7 @@ export const HomePage = ({ theme, userType }: HomePageProps): JSX.Element => {
         return (
             <AppContextProvider theme={theme}>
                 <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
-                <div className={cn(styles.homeWrapper, {
-                    [styles.darkThemeWrapper]: themeState === 'dark',
-                })}>
+                <div className={styles.homeWrapper}>
                     Executor
                 </div>
                 <Footer theme={themeState} />
@@ -50,9 +46,7 @@ export const HomePage = ({ theme, userType }: HomePageProps): JSX.Element => {
         return (
             <AppContextProvider theme={theme}>
                 <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
-                <div className={cn(styles.homeWrapper, {
-                    [styles.darkThemeWrapper]: themeState === 'dark',
-                })}>
+                <div className={styles.homeWrapper}>
                     Admin
                 </div>
                 <Footer theme={themeState} />
