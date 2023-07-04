@@ -48,10 +48,9 @@ a {
 :root {
 	--primary: #BCA48F;
 	--dark: #1F1F1F;
-	--darkTheme: #0F0F0F;
-	--darkTheme_light: #4D4D4D;
+	--darkTheme: #2F2F2F;
 	--light: #E3CFBF;
-	--lighter: #F0F0F0;
+	--lighter: #E7E7E7;
 	--white: white;
 	--error: #FF1500;
 	--like: #E44;

@@ -12,9 +12,9 @@
 }
 
 .darkThemeWrapper {
-	transition-duration: 300ms;
-
-	background: var(--darkTheme);
+    background: var(--darkTheme);
+    color: var(--white);
+    transition-duration: 300ms;
 }
 
 .homeWrapper > button {
