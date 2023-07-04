@@ -1,0 +1,80 @@
+.header {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    background: var(--footer);
+    padding: 30px 20px;
+    transition-duration: 300ms;
+}
+
+.darkThemeHeader {
+    background: var(--dark);
+    transition-duration: 300ms;
+}
+
+.text {
+    font-weight: 200;
+    transition-duration: 300ms;
+}
+
+.darkThemeText {
+    color: var(--primary);
+    transition-duration: 300ms;
+}
+
+.svg svg {
+    font-size: 25px;
+    cursor: pointer;
+    transition-duration: 300ms;
+    fill: var(--dark);
+}
+
+.darkThemeSvg svg {
+    transition-duration: 300ms;
+    fill: var(--primary);
+}
+
+.svg:active svg {
+    transition-duration: 300ms;
+    fill: var(--primary);
+}
+
+.darkThemeSvg:active svg {
+    transition-duration: 300ms;
+    fill: var(--white);
+}
+
+@media (min-width: 1024px) {
+	.svg:hover svg {
+        transition-duration: 300ms;
+        fill: var(--primary);
+    }
+
+    .darkThemeSvg:hover svg {
+        transition-duration: 300ms;
+        fill: var(--white);
+    }
+}
+
+@media (max-width: 580px) {
+    .header {
+        gap: 20px;
+        padding: 20px 20px;
+    }
+
+	.svg svg {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 350px) {
+    .header {
+        gap: 15px;
+        padding: 20px 15px;
+    }
+
+	.svg svg {
+        font-size: 15px;
+    }
+}

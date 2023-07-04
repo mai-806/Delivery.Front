@@ -8,13 +8,10 @@
 
 	transition-duration: 300ms;
 
-	background: var(--white);
-}
-
-.darkThemeWrapper {
-	transition-duration: 300ms;
-
-	background: var(--darkTheme);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url('/background.jpg');
 }
 
 .profileWrapper > button {

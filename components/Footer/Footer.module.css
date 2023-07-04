@@ -5,6 +5,12 @@
 
 	border-top: 1px solid var(--dark);
 	background: var(--footer);
+	transition-duration: 300ms;
+}
+
+.darkThemeFooter {
+	background: var(--dark);
+    transition-duration: 300ms;
 }
 
 .footerCopyright {

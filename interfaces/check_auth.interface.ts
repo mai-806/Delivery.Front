@@ -3,4 +3,5 @@ export interface CheckAuthInterface {
     errPassword: boolean,
     errConfirmPassword: boolean,
     errUsername: boolean,
+    errEmail: boolean,
 }

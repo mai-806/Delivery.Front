@@ -17,6 +17,7 @@ import { UserTypeChange } from 'components/UserTypeChange/UserTypeChange';
 export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormProps): JSX.Element => {
 	const router = useRouter();
 
+	const [email, setEmail] = useState<string>('');
 	const [username, setUsername] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -32,11 +33,12 @@ export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormPr
 		errPassword: false,
 		errConfirmPassword: false,
 		errUsername: false,
+		errEmail: false,
 	};
 
 	const [error, setError] = useState<CheckAuthInterface>(errType);
 
-	const authData = [password, confirmPassword, username, userType];
+	const authData = [password, confirmPassword, username, userType, email];
 
 	const changeInputType = () => {
 		if (pswdType !== 'text') {
@@ -51,9 +53,9 @@ export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormPr
 			<div className={cn(className, styles.authForm)} {...props}>
 				<Htag tag='xl' className={styles.welcome}>{setLocale(router.locale).welcome}</Htag>
 				<p className={styles.slogan}>В любую погоду, и в город, и в лес, посылку доставит МяуМяуЭкспресс :)</p>
-				<Input type='text' text={setLocale(router.locale).username}
-					value={username} error={error.errUsername} eye={false}
-					onChange={(e) => setUsername(e.target.value)} />
+				<Input type='email' text={setLocale(router.locale).email}
+					value={email} error={error.errEmail} eye={false}
+					onChange={(e) => setEmail(e.target.value)} />
 				<InputWithEye onMouseEnter={() => setPswdType('text')}
 					onMouseLeave={() => setPswdType('password')}
 					onClick={() => {
@@ -79,6 +81,9 @@ export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormPr
 			<div className={cn(className, styles.authForm)} {...props}>
 				<Htag tag='xl' className={styles.welcome}>{setLocale(router.locale).welcome}</Htag>
 				<p className={styles.slogan}>В любую погоду, и в город, и в лес, посылку доставит МяуМяуЭкспресс :)</p>
+				<Input type='email' text={setLocale(router.locale).email}
+					value={email} error={error.errEmail} eye={false}
+					onChange={(e) => setEmail(e.target.value)} />
 				<Input type='text' text={setLocale(router.locale).username}
 					value={username} error={error.errUsername} eye={false}
 					onChange={(e) => setUsername(e.target.value)} />
