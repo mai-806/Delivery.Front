@@ -51,6 +51,7 @@ export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormPr
 	if (type === 'login') {
 		return (
 			<div className={cn(className, styles.authForm)} {...props}>
+				<div className={styles.logo} />
 				<Htag tag='xl' className={styles.welcome}>{setLocale(router.locale).welcome}</Htag>
 				<p className={styles.slogan}>В любую погоду, и в город, и в лес, посылку доставит МяуМяуЭкспресс :)</p>
 				<Input type='email' text={setLocale(router.locale).email}

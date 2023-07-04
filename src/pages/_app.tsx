@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <meta name='description' content='Delivery' />
       <meta property='og:title' content='Delivery' />
       <meta property='og:description' content='Delivery' />
-      <link rel="icon" href="/logo_icon_circle.svg" type='image/svg+xml' />
+      <link rel="icon" href="/logo.png" type='image/png' />
     </Head>
     <Component {...pageProps} />
   </>;
