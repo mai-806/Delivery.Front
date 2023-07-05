@@ -5,7 +5,7 @@ import { setLocale } from 'helpers/locale.helper';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
 
-export const OrderHistoryItem = ({ theme, orderNumber, date, customer,
+export const OrderHistoryItem = ({ theme, userType, orderNumber, date, customer,
     address, details }: OrderHistoryItemProps ): JSX.Element => {
     const router = useRouter();
 
@@ -18,7 +18,7 @@ export const OrderHistoryItem = ({ theme, orderNumber, date, customer,
             })}>{setLocale(router.locale).order + ' №' + orderNumber + ', ' + date}</Htag>
             <Htag tag='s'className={cn(styles.text, {
                 [styles.darkThemeText]: theme === 'dark',
-            })}>{setLocale(router.locale).customer + ': ' + customer}</Htag>
+            })}>{(userType === 'customer' ? setLocale(router.locale).executor : setLocale(router.locale).customer) + ': ' + customer}</Htag>
             <Htag tag='s'className={cn(styles.text, {
                 [styles.darkThemeText]: theme === 'dark',
             })}>{setLocale(router.locale).address + ': ' + address}</Htag>

@@ -3,6 +3,8 @@ export interface OrderInterface {
     orderNumber: string,
     date: string,
     customer: string,
-    address: string,
+    executor: string,
+    whereFrom: string,
+    whereTo: string,
     details: string,
 }

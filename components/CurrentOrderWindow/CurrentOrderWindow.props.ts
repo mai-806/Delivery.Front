@@ -6,4 +6,5 @@ export interface CurrentOrderProps {
     whereFrom: string,
     whereTo: string,
     details: string,
+    userType: 'customer' | 'executor' | 'admin',
 }

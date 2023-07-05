@@ -5,4 +5,5 @@ export interface OrderHistoryItemProps {
     customer: string,
     address: string,
     details: string,
+    userType: 'customer' | 'executor' | 'admin',
 }
