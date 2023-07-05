@@ -1,25 +1,22 @@
-import styles from './OrderHistory.module.css';
+import { OrderHistoryProps } from './OrderHistory.props';
+import styles from './OrderHistory.module.css'
+import { Htag } from 'components/Htag/Htag';
+import { setLocale } from 'helpers/locale.helper';
+import { useRouter } from 'next/router';
+import cn from 'classnames';
 
-export const OrderHistory = (): JSX.Element => {
+
+export const OrderHistory = ({ theme, children }: OrderHistoryProps ): JSX.Element => {
+    const router = useRouter();
+
     return (
-        <div className={styles.historyPage}>
-            <div className={styles.historyLabel}>История заказов</div>
-            <div className={`${styles.orderDetail} ${styles.orderDetailLocation1}`} >
-                <div className={`${styles.orderDetailTextStyle} ${styles.orderDetailTextLocation1}`}>Заказ № ххххх, хх/хх/20хх</div>
-                <div className={`${styles.orderDetailTextStyle} ${styles.orderDetailTextLocation2}`}>Детали заказа: </div>
-                <div className={`${styles.orderDetailTextStyle} ${styles.orderDetailTextLocation3}`}>Заказчик : <br /> Адресс : <br /></div>
-            </div>
-            <div className={`${styles.orderDetail} ${styles.orderDetailLocation2}`} >
-                <div className={`${styles.orderDetailTextStyle} ${styles.orderDetailTextLocation1}`}>Заказ № ххххх, хх/хх/20хх</div>
-                <div className={`${styles.orderDetailTextStyle} ${styles.orderDetailTextLocation2}`}>Детали заказа: </div>
-                <div className={`${styles.orderDetailTextStyle} ${styles.orderDetailTextLocation3}`}>Заказчик : <br /> Адресс : <br /></div>
-            </div>
-            <div className={`${styles.orderDetail} ${styles.orderDetailLocation3}`} >
-                <div className={`${styles.orderDetailTextStyle} ${styles.orderDetailTextLocation1}`}>Заказ № ххххх, хх/хх/20хх</div>
-                <div className={`${styles.orderDetailTextStyle} ${styles.orderDetailTextLocation2}`}>Детали заказа: </div>
-                <div className={`${styles.orderDetailTextStyle} ${styles.orderDetailTextLocation3}`}>Заказчик : <br /> Адресс : <br /></div>
-            </div>
-            <button className={styles.label2}>Ещё</button>
+        <div className={cn(styles.historyPage, {
+            [styles.darkThemeHistoryPage]: theme === 'dark',
+        })}>
+            <Htag tag='l'className={cn(styles.text, {
+                [styles.darkThemeText]: theme === 'dark',
+            })}>{setLocale(router.locale).history_orders + ':'}</Htag>
+            {children}
         </div>
     )
 }

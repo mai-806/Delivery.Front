@@ -53,4 +53,13 @@ export const fr = {
     customer: "Сlient",
     executor: "Exécuteur",
     admin: "Admin",
+    log_out: "Se déconnecter",
+    change_password: "Changer le mot de passe",
+    current_order: "Commande en cours",
+    order: "Commande",
+    where_from: "D'où",
+    where_to: "Où aller",
+    details: "Détails",
+    history_orders: "Historique des commandes",
+    address: "Adresse",
 };

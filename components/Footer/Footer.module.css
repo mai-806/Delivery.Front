@@ -13,6 +13,15 @@
     transition-duration: 300ms;
 }
 
+.text {
+	transition-duration: 300ms;
+}
+
+.darkThemeText {
+	color: var(--primary) !important;
+	transition-duration: 300ms;
+}
+
 .footerCopyright {
 	display: grid;
 	grid-template-columns: auto auto;

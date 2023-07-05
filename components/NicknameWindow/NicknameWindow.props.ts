@@ -1,3 +1,5 @@
 export interface UserProfileProps {
-    name: string;
+    theme: string,
+    name: string,
+    email: string,
 }

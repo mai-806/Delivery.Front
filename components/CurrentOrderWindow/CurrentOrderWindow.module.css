@@ -1,75 +1,64 @@
-.userProfile2 {
-    position: absolute;
-    width: 624px;
-    height: 210.2755889892578px;
-    top: 171.72439575195312px;
-    left: 744px;
+.userProfile {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    width: 90%;
+    justify-self: right;
     border-radius: 27px;
-    box-shadow: 4px 4px 6px 0px #00000040;
-    border: 1px;
     background: linear-gradient(98.06deg, #C2B2A3 0%, #DED8D4 89.65%, #BCA48F 137.22%);
-    border: 1px solid #00000075;
+    border: 1px solid var(--dark);
+    filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+    align-items: top;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition-duration: 300ms;
 }
 
-.userInfo2 {
-    position: absolute;
-    width: 136px;
-    height: 18.88188934326172px;
-    top: 27%;
-    left: 150px;
-    font-family: Inter;
-    font-size: 22px;
-    font-weight: 300;
-    line-height: 27px;
-    letter-spacing: 0em;
-    text-align: left;
-    white-space: nowrap;
+.darkThemeUserProfile {
+    background: var(--darkTheme);
+    border: 1px solid var(--primary);
+    transition-duration: 300ms;
 }
 
-.emblemText {
-    position: absolute;
+.avatar {
+    height: 65px;
+    width: 65px;
     border-radius: 50%;
-    top: 15%;
+    background: linear-gradient(0deg, rgba(217, 217, 217, 0.5), rgba(217, 217, 217, 0.5));
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 81px;
-    height: 81px;
-    left: 44px;
-    border: 5px solid #E8E8E8;
-
-}
-
-.emblem {
     background-image: url('/box.png');
-    position: absolute;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 50px;
-    height: 42.913387298583984px;
-    top: 26%;
-    left: 65px;
+    border: 5px solid var(--white);
+    transition-duration: 300ms;
 }
 
-.infoOrderStyle {
-    position: absolute;
-    width: 369px;
-    height: 21px;
-    font-family: Inter;
-    font-size: 15px;
+.currentOrder {
     font-weight: 300;
-    line-height: 18px;
-    letter-spacing: 0em;
     text-align: left;
+    margin-bottom: 5px;
+    transition-duration: 300ms;
 }
 
-.infoOrder1 {
-    top: 107px;
-    left: 150px;
+.darkThemeCurrentOrder {
+    color: var(--primary);
+    transition-duration: 300ms;
 }
 
-.infoOrder2 {
-    top: 125px;
-    left: 150px;
+.text {
+    max-width: 450px;
+    font-weight: 200;
+    text-align: left;
+    transition-duration: 300ms;
+}
+
+.darkThemeText {
+    color: var(--white);
+    transition-duration: 300ms;
+}
+
+@media (max-width: 1024px) {
+	.userProfile {
+        justify-self: center;
+    }
 }

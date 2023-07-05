@@ -1,0 +1,39 @@
+.historyPage {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 77%;
+    border-radius: 27px;
+    background: linear-gradient(0deg, rgba(231, 231, 231, 1), rgba(231, 231, 231, 1));
+    border: 1px solid var(--dark);
+    filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+    align-items: center;
+    align-self: start;
+    justify-items: center;
+    padding: 20px;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+    transition-duration: 300ms;
+}
+
+.darkThemeHistoryPage {
+    background: var(--darkTheme);
+    border: 1px solid var(--primary);
+    transition-duration: 300ms;
+}
+
+.text {
+    font-weight: 300;
+    transition-duration: 300ms;
+}
+
+.darkThemeText {
+    color: var(--primary);
+    transition-duration: 300ms;
+}
+
+@media (max-width: 1024px) {
+	.historyPage {
+        width: 72%;
+    }
+}
