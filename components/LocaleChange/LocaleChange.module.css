@@ -21,11 +21,31 @@
 	color: var(--primary);
 }
 
+.darkThemeLang,
+.darkThemeLangLink {
+	color: var(--primary);
+	transition-duration: 300ms;
+}
+
+.darkThemeLang:active,
+.darkThemeLangLink:active {
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+	color: var(--white);
+}
+
 @media (min-width: 1024px) {
 	.lang:hover,
 	.langLink:hover {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 		color: var(--primary);
+	}
+
+	.darkThemeLang:hover,
+	.darkThemeLangLink:hover {
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+		color: var(--white);
 	}
 }

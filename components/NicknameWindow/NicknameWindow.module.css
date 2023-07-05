@@ -1,93 +1,112 @@
 .userProfile {
-    position: absolute;
-    width: 624px;
-    height: 210.2755889892578px;
-    top: 171.72439575195312px;
-    left: 62px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 90%;
+    justify-self: left;
     border-radius: 27px;
     background: linear-gradient(0deg, rgba(231, 231, 231, 1), rgba(231, 231, 231, 1));
-    border: 1px solid #00000075;
-    box-shadow: 4px 4px 6px 0px #00000040;
-    display: flex;
-    flex-direction: column;
+    border: 1px solid var(--dark);
+    filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
     align-items: center;
-    justify-content: space-evenly;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition-duration: 300ms;
+}
+
+.darkThemeUserProfile {
+    background: var(--darkTheme);
+    border: 1px solid var(--primary);
+    transition-duration: 300ms;
+}
+
+.userInfoBlock1,
+.userInfoBlock2 {
+    display: grid;
+    align-items: center;
+    gap: 10px;
+}
+
+.userInfoBlock1 {
+    grid-template-columns: auto 1fr;
+}
+
+.userInfoBlock2 {
+    grid-template-rows: auto auto;
+    justify-items: left;
 }
 
 .avatar {
-    position: absolute;
-    height: 85px;
-    width: 85px;
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
     background: linear-gradient(0deg, rgba(217, 217, 217, 0.5), rgba(217, 217, 217, 0.5));
-    top: 15%;
-    left: 44px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border: 1px solid #00000080
+    border: 1px solid var(--dark);
+    transition-duration: 300ms;
 }
 
-.userInfo {
-    position: absolute;
-    width: 136px;
-    height: 18.88188934326172px;
-    top: 27%;
-    left: 150px;
-    font-family: Inter;
-    font-size: 22px;
+.darkThemeAvatar {
+    border: 1px solid var(--primary);
+    transition-duration: 300ms;
+}
+
+.username {
+    margin-left: 5px;
     font-weight: 300;
-    line-height: 27px;
-    letter-spacing: 0em;
-    text-align: left;
+    transition-duration: 300ms;
 }
 
-.login {
-    position: absolute;
-    width: 320px;
-    height: 30.89763832092285px;
-    top: 65%;
-    left: 44px;
-    font-family: Inter;
-    font-size: 15px;
+.darkThemeUsername {
+    color: var(--primary);
+    transition-duration: 300ms;
+}
+
+.text {
+    max-width: 450px;
     font-weight: 200;
-    line-height: 43.5px;
-    letter-spacing: 0em;
     text-align: left;
+    transition-duration: 300ms;
 }
 
-.label {
-    position: absolute;
-    top: 80%;
-    left: 44px;
-    display: inline-block;
-    color: rgb(68, 68, 68);
-    text-decoration: none;
-    user-select: none;
-    padding: 0.001em 0.5em;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 27px;
-    background: rgb(231, 231, 231, 0.46) linear-gradient(#f4f4f4, #f1f1f1);
-    transition: all .218s ease 0s;
-    font-family: Inter;
-    font-size: 15px;
-    font-weight: 200;
-    line-height: 44px;
-    letter-spacing: 0em;
-    text-align: left;
+.darkThemeText,
+.darkThemeText > span {
+    color: var(--white);
+    transition-duration: 300ms;
 }
 
-.label:hover {
-    color: rgb(24, 24, 24);
-    border: 1px solid rgb(198, 198, 198);
-    background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+.logOut,
+.changePassword {
+    cursor: pointer;
+    transition-duration: 300ms;
 }
 
-.label:active {
-    color: rgb(51, 51, 51);
-    border: 1px solid rgb(204, 204, 204);
-    background: rgb(238, 238, 238) linear-gradient(rgb(238, 238, 238), rgb(224, 224, 224));
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .1) inset;
+.logOut:active {
+    color: var(--error);
+    transition-duration: 300ms;
+}
+
+.changePassword:active {
+    color: var(--primary);
+    transition-duration: 300ms;
+}
+
+@media (min-width: 1024px) {
+	.logOut:hover {
+        color: var(--error);
+        transition-duration: 300ms;
+    }
+    
+    .changePassword:hover {
+        color: var(--primary);
+        transition-duration: 300ms;
+    }
+}
+
+@media (max-width: 1024px) {
+	.userProfile {
+        justify-self: center;
+    }
 }

@@ -53,4 +53,13 @@ export const zh = {
     customer: "客户",
     executor: "执行者",
     admin: "行政",
+    log_out: "登出",
+    change_password: "更改密码",
+    current_order: "当前订单",
+    order: "命令",
+    where_from: "从哪里来",
+    where_to: "去哪儿",
+    details: "细节",
+    history_orders: "订单历史",
+    address: "地址",
 };

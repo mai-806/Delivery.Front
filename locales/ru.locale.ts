@@ -53,4 +53,13 @@ export const ru = {
     customer: "Заказчик",
     executor: "Исполнитель",
     admin: "Админ",
+    log_out: "Выйти",
+    change_password: "Сменить пароль",
+    current_order: "Текущий заказ",
+    order: "Заказ",
+    where_from: "Откуда",
+    where_to: "Куда",
+    details: "Детали",
+    history_orders: "История заказов",
+    address: "Адрес",
 };

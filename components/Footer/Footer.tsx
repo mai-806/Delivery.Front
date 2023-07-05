@@ -16,13 +16,17 @@ export const Footer = ({ theme }: FooterProps): JSX.Element => {
             [styles.darkThemeFooter]: theme === 'dark',
         })}>
             <div className={styles.footerCopyright}>
-                <Htag tag='s'>
+                <Htag tag='s' className={cn(styles.text, {
+                    [styles.darkThemeText]: theme === 'dark',
+                })}>
                     {'© ' + setFooterYear() + ' ' + process.env.NEXT_PUBLIC_TITLE + '. ' + setLocale(router.locale).rights_reserved + '.'}
                 </Htag>
-                <LocaleChange />
+                <LocaleChange theme={theme} />
             </div>
             <div className={styles.footerBy}>
-                <Htag tag='xs'>by М8О-206Б-21</Htag>
+                <Htag tag='xs' className={cn(styles.text, {
+                    [styles.darkThemeText]: theme === 'dark',
+                })}>by М8О-206Б-21</Htag>
             </div>
         </footer>
     );

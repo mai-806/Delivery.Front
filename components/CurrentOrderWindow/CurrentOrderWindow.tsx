@@ -1,16 +1,40 @@
-import styles from './OrderHistory.module.css';
+import { CurrentOrderProps } from './CurrentOrderWindow.props';
+import styles from './CurrentOrderWindow.module.css';
+import { Htag } from 'components/Htag/Htag';
+import { setLocale } from 'helpers/locale.helper';
+import { useRouter } from 'next/router';
+import cn from 'classnames';
 
-export const OrderHistory = (): JSX.Element => {
+
+export const CurrentOrderWindow = ({ theme, orderNumber, date, customer, whereFrom,
+    whereTo, details }: CurrentOrderProps): JSX.Element => {
+    const router = useRouter();
+
     return (
-        <div className={styles.userProfile2}>
-            <div className={styles.emblemText}></div>
-            <div className={styles.emblem}></div>
-            <div className={styles.userInfo2}>Текущий заказ</div>
-            <div className={`${styles.infoOrderStyle} ${styles.infoOrder1}`}>Заказ №ххххх, хх/хх/20хх</div>
-            <div className={`${styles.infoOrderStyle} ${styles.infoOrder2}`}>Заказчик :<br />
-                Откуда :<br />
-                Куда :<br />
-                Детали заказа :</div>
+        <div className={cn(styles.userProfile, {
+            [styles.darkThemeUserProfile]: theme === 'dark',
+        })}>
+            <div className={styles.avatar} />
+            <div>
+                <Htag tag='l'className={cn(styles.currentOrder, {
+                    [styles.darkThemeCurrentOrder]: theme === 'dark',
+                })}>{setLocale(router.locale).current_order + ':'}</Htag>
+                <Htag tag='s'className={cn(styles.text, {
+                    [styles.darkThemeText]: theme === 'dark',
+                })}>{setLocale(router.locale).order + ' №' + orderNumber + ', ' + date}</Htag>
+                <Htag tag='s'className={cn(styles.text, {
+                    [styles.darkThemeText]: theme === 'dark',
+                })}>{setLocale(router.locale).customer + ': ' + customer}</Htag>
+                <Htag tag='s'className={cn(styles.text, {
+                    [styles.darkThemeText]: theme === 'dark',
+                })}>{setLocale(router.locale).where_from + ': ' + whereFrom}</Htag>
+                <Htag tag='s'className={cn(styles.text, {
+                    [styles.darkThemeText]: theme === 'dark',
+                })}>{setLocale(router.locale).where_to + ': ' + whereTo}</Htag>
+                <Htag tag='s'className={cn(styles.text, {
+                    [styles.darkThemeText]: theme === 'dark',
+                })}>{setLocale(router.locale).details + ': ' + details}</Htag>
+            </div>
         </div>
     )
 }

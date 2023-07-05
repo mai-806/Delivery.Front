@@ -53,4 +53,13 @@ export const en = {
     customer: "Customer",
     executor: "Executor",
     admin: "Admin",
+    log_out: "Log Out",
+    change_password: "Change Password",
+    current_order: "Current Order",
+    order: "Order",
+    where_from: "Where from",
+    where_to: "Where to",
+    details: "Details",
+    history_orders: "History of Orders",
+    address: "Address",
 };

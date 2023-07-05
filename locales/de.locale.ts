@@ -53,4 +53,13 @@ export const de = {
     customer: "Kunde",
     executor: "Kurier",
     admin: "Admin",
+    log_out: "Ausloggen",
+    change_password: "Kennwort ändern",
+    current_order: "Aktueller Auftrag",
+    order: "Auftrag",
+    where_from: "Woher",
+    where_to: "Wohin",
+    details: "Einzelheiten",
+    history_orders: "Geschichte der Orden",
+    address: "Adresse",
 };
