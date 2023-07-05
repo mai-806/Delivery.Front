@@ -62,4 +62,8 @@ export const en = {
     details: "Details",
     history_orders: "History of Orders",
     address: "Address",
+    enter_manually: "Enter manually",
+    select_on_map: "Select on the map",
+    order2: "Order",
+    ordered: "Ordered",
 };

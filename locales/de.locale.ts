@@ -62,4 +62,8 @@ export const de = {
     details: "Einzelheiten",
     history_orders: "Geschichte der Orden",
     address: "Adresse",
+    enter_manually: "Manuell eintragen",
+    select_on_map: "Auf der Karte",
+    order2: "Befehl",
+    ordered: "Bestellt",
 };
