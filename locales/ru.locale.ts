@@ -62,4 +62,8 @@ export const ru = {
     details: "Детали",
     history_orders: "История заказов",
     address: "Адрес",
+    enter_manually: "Ввести вручную",
+    select_on_map: "Выбрать на карте",
+    order2: "Заказать",
+    ordered: "Заказано",
 };

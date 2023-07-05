@@ -18,5 +18,5 @@ export const OrderHistory = ({ theme, children }: OrderHistoryProps ): JSX.Eleme
             })}>{setLocale(router.locale).history_orders + ':'}</Htag>
             {children}
         </div>
-    )
+    );
 }

@@ -10,17 +10,13 @@ export function checkAuth(authData: string[], si: boolean, locale: string | unde
         errPassword: false,
         errConfirmPassword: false,
         errUsername: false,
-        errEmail: false,
     };
 
     if (authData[0].length < 8
-        || authData[0] !== authData[1] || authData[2].length === 0
-        || !EMAIL_REGEXP.test(authData[4])) {
+        || authData[0] !== authData[1] || authData[2].length === 0) {
         if (authData[2].length === 0) {
             checkAuth.errUsername = true;
-            if (!si) {
-                { ToastError(setLocale(locale).error_name); }
-            }
+            { ToastError(setLocale(locale).error_name); }
         }
         if (authData[0].length < 8) {
             checkAuth.errPassword = true;
@@ -32,11 +28,7 @@ export function checkAuth(authData: string[], si: boolean, locale: string | unde
                 { ToastError(setLocale(locale).error_confirm); }
             }
         }
-        if (!EMAIL_REGEXP.test(authData[4])) {
-            checkAuth.errEmail = true;
-            { ToastError(setLocale(locale).error_email); }
-        }
-        if (si && authData[0].length >= 8 && EMAIL_REGEXP.test(authData[4])) {
+        if (si && authData[0].length >= 8) {
             checkAuth.ok = true;
         }
     } else {

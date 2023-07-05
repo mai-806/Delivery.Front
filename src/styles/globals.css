@@ -47,6 +47,8 @@ a {
 
 :root {
 	--primary: #BCA48F;
+	--primaryLight: #D4CAC1;
+	--primaryDark: #734720;
 	--dark: #1F1F1F;
 	--darkTheme: #2F2F2F;
 	--light: #E3CFBF;

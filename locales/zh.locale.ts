@@ -62,4 +62,8 @@ export const zh = {
     details: "细节",
     history_orders: "订单历史",
     address: "地址",
+    enter_manually: "手动输入",
+    select_on_map: "在地图上选择",
+    order2: "命令",
+    ordered: "已订购",
 };

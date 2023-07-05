@@ -1,7 +1,7 @@
 .homeWrapper {
 	display: grid;
-    grid-template-columns: 200px 200px;
     gap: 10px;
+    justify-items: center;
 
 	width: 100%;
     height: 100vh;
@@ -27,4 +27,137 @@
 .homeWrapper > button:hover {
     background: var(--light);
     transition-duration: 300ms;
+}
+
+.buttonsWrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+    width: fit-content;
+    height: fit-content;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.button {
+    width: 400px;
+    height: 40px;
+    background: var(--primaryLight);
+    color: var(--primaryDark);
+    font-weight: 300;
+    border-radius: 15px;
+    border: 1px solid var(--primary);
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+
+.darkThemeButton {
+    background: var(--darkTheme);
+    color: var(--primary);
+    transition-duration: 300ms;
+}
+
+.button:active {
+    background: var(--primary);
+    transition-duration: 300ms;
+}
+
+.darkThemeButton:active {
+    background: var(--dark);
+    transition-duration: 300ms;
+}
+
+.orderButton {
+    width: 300px;
+    height: 40px;
+    background: var(--primaryDark) !important;
+    color: var(--white);
+    font-weight: 300;
+    border-radius: 15px;
+    border: 1px solid var(--primary) !important;
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+
+.darkThemeOrderButton {
+    background: var(--darkTheme) !important;
+    color: var(--primary);
+    transition-duration: 300ms;
+}
+
+.orderButton:active {
+    background: var(--primaryLight) !important;
+    transition-duration: 300ms;
+}
+
+.darkThemeOrderButton:active {
+    background: var(--dark) !important;
+    transition-duration: 300ms;
+}
+
+@media (min-width: 1024px) {
+	.button:hover {
+        background: var(--primary);
+        transition-duration: 300ms;
+    }
+
+    .darkThemeButton:hover {
+        background: var(--dark);
+        transition-duration: 300ms;
+    }
+
+    .orderButton:hover {
+        background: var(--primaryLight) !important;
+        transition-duration: 300ms;
+    }
+    
+    .darkThemeOrderButton:hover {
+        background: var(--dark) !important;
+        transition-duration: 300ms;
+    }
+}
+
+@media (max-width: 1024px) {
+	.button {
+        width: 300px;
+    }
+}
+
+@media (max-width: 670px) {
+	.button {
+        width: 200px;
+    }
+}
+
+@media (max-width: 500px) {
+    .buttonsWrapper {
+        gap: 10px;
+    }
+
+	.button {
+        width: 150px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 500px) {
+    .buttonsWrapper {
+        grid-template-columns: auto;
+    }
+
+	.button {
+        width: 300px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 350px) {
+	.button {
+        width: 200px;
+        height: 35px;
+    }
+
+    .orderButton {
+        width: 150px !important;
+    }
 }
