@@ -30,7 +30,6 @@ export const ProfilePage = ({ theme, userType }: ProfilePageProps): JSX.Element 
 
     let order1: OrderInterface = {
         id: 1,
-        orderNumber: '54321',
         date: '01/04/2023',
         customer: 'Pavel Filippov',
         executor: 'Noname',
@@ -41,7 +40,6 @@ export const ProfilePage = ({ theme, userType }: ProfilePageProps): JSX.Element 
 
     let order2: OrderInterface = {
         id: 2,
-        orderNumber: '74865',
         date: '13/06/2023',
         customer: 'DmitriMAI',
         executor: 'Noname',
@@ -59,13 +57,13 @@ export const ProfilePage = ({ theme, userType }: ProfilePageProps): JSX.Element 
                 <div className={styles.profileWrapper}>
                     <div className={styles.userInfoBlock}>
                         <NicknameWindow theme={themeState} name={name} email={email} />
-                        <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.orderNumber}
+                        <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.id}
                             date={order1.date} customer={order1.executor} whereFrom={order1.whereFrom}
                             whereTo={order1.whereTo} details={order1.details} />
                     </div>
                     <OrderHistory theme={themeState}>
                         {orders.map(o => (
-                            <OrderHistoryItem key={o.id} theme={themeState} userType={userType} orderNumber={o.orderNumber}
+                            <OrderHistoryItem key={o.id} theme={themeState} userType={userType} orderNumber={o.id}
                                 date={o.date} customer={o.executor} address={o.whereTo} details={o.details} />
                         ))}
                     </OrderHistory>
@@ -80,13 +78,13 @@ export const ProfilePage = ({ theme, userType }: ProfilePageProps): JSX.Element 
                 <div className={styles.profileWrapper}>
                     <div className={styles.userInfoBlock}>
                         <NicknameWindow theme={themeState} name={name} email={email} />
-                        <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.orderNumber}
+                        <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.id}
                             date={order1.date} customer={order1.customer} whereFrom={order1.whereFrom}
                             whereTo={order1.whereTo} details={order1.details} />
                     </div>
                     <OrderHistory theme={themeState}>
                         {orders.map(o => (
-                            <OrderHistoryItem key={o.id} theme={themeState} userType={userType} orderNumber={o.orderNumber}
+                            <OrderHistoryItem key={o.id} theme={themeState} userType={userType} orderNumber={o.id}
                                 date={o.date} customer={o.customer} address={o.whereTo} details={o.details} />
                         ))}
                     </OrderHistory>

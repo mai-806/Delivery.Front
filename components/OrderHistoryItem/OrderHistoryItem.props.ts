@@ -1,6 +1,6 @@
 export interface OrderHistoryItemProps {
     theme: string,
-    orderNumber: string,
+    orderNumber: number,
     date: string,
     customer: string,
     address: string,

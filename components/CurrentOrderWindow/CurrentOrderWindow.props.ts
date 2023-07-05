@@ -1,6 +1,6 @@
 export interface CurrentOrderProps {
     theme: string,
-    orderNumber: string,
+    orderNumber: number,
     date: string,
     customer: string,
     whereFrom: string,
