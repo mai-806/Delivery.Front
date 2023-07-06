@@ -10,9 +10,11 @@ import { OrderForm } from 'components/OrderForm/OrderForm';
 import { ToastSuccess } from "components/Toast/Toast";
 import { Toaster } from 'react-hot-toast';
 import cn from 'classnames';
+import { orderPost } from 'helpers/order.helper';
+import { OrderPos } from 'interfaces/order.interface';
 
 
-export const HomePage = ({ theme, userType }: HomePageProps): JSX.Element => {
+export const HomePage = ({ theme, userType, userId }: HomePageProps): JSX.Element => {
     const router = useRouter();
 
     const [themeState, setThemeState] = useState<string>(theme);
@@ -32,6 +34,16 @@ export const HomePage = ({ theme, userType }: HomePageProps): JSX.Element => {
     const [details, setDetails] = useState<string>('');
     const [isErrorWF, setIsErrorWF] = useState<boolean>(false);
     const [isErrorWT, setIsErrorWT] = useState<boolean>(false);
+
+    let start: OrderPos = {
+        lon: 180,
+        lat: 90.
+    }
+
+    let finish: OrderPos = {
+        lon: 180,
+        lat: 90.
+    }
 
     if (userType === 'customer') {
         return (
@@ -77,6 +89,8 @@ export const HomePage = ({ theme, userType }: HomePageProps): JSX.Element => {
                                 ToastSuccess(setLocale(router.locale).ordered + '!');
                                 setIsErrorWF(false);
                                 setIsErrorWT(false);
+
+                                orderPost(userId, start, finish);
                             }
                         }
                     }}>

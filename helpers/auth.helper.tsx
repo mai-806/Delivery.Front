@@ -39,6 +39,7 @@ export async function loginUser(authData: Array<string>, router: any) {
         if (isCompare.Compare === 'True') {
             localStorage.setItem('logged_in', 'true');
             localStorage.setItem('user_type', authData[3]);
+            localStorage.setItem('user_id', String(user.id));
             router.push('/home');
         } else {
             ToastError(setLocale(router.locale).incorrect_passwor + '!');
@@ -61,6 +62,7 @@ export async function registerUser(authData: Array<string>, router: any) {
         }).then(function () {            
             localStorage.setItem('logged_in', 'true');
             localStorage.setItem('user_type', authData[3]);
+            localStorage.setItem('user_id', String(user.id));
             router.push('/home');
         })
         .catch(function (error) {

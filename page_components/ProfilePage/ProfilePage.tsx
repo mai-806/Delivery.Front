@@ -12,7 +12,7 @@ import { OrderInterface } from 'interfaces/order.interface';
 import { OrderHistoryItem } from 'components/OrderHistoryItem/OrderHistoryItem';
 
 
-export const ProfilePage = ({ theme, userType }: ProfilePageProps): JSX.Element => {
+export const ProfilePage = ({ theme, userType, username }: ProfilePageProps): JSX.Element => {
     const router = useRouter();
 
     const [themeState, setThemeState] = useState<string>(theme);
@@ -24,9 +24,6 @@ export const ProfilePage = ({ theme, userType }: ProfilePageProps): JSX.Element 
     } else {
         newTheme = 'light';
     }
-
-    let name: string = 'separatrix';
-    let email: string = 'separatrix@gmail.com';
 
     let order1: OrderInterface = {
         id: 1,
@@ -56,7 +53,7 @@ export const ProfilePage = ({ theme, userType }: ProfilePageProps): JSX.Element 
                 <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
                 <div className={styles.profileWrapper}>
                     <div className={styles.userInfoBlock}>
-                        <NicknameWindow theme={themeState} name={name} email={email} />
+                        <NicknameWindow theme={themeState} name={username} />
                         <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.id}
                             date={order1.date} customer={order1.executor} whereFrom={order1.whereFrom}
                             whereTo={order1.whereTo} details={order1.details} />
@@ -77,7 +74,7 @@ export const ProfilePage = ({ theme, userType }: ProfilePageProps): JSX.Element 
                 <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
                 <div className={styles.profileWrapper}>
                     <div className={styles.userInfoBlock}>
-                        <NicknameWindow theme={themeState} name={name} email={email} />
+                        <NicknameWindow theme={themeState} name={username} />
                         <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.id}
                             date={order1.date} customer={order1.customer} whereFrom={order1.whereFrom}
                             whereTo={order1.whereTo} details={order1.details} />

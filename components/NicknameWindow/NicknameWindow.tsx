@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import cn from 'classnames';
 
 
-export const NicknameWindow = ({ theme, name, email }: UserProfileProps): JSX.Element => {
+export const NicknameWindow = ({ theme, name }: UserProfileProps): JSX.Element => {
     const router = useRouter();
 
     return (
@@ -21,25 +21,18 @@ export const NicknameWindow = ({ theme, name, email }: UserProfileProps): JSX.El
                     [styles.darkThemeUsername]: theme === 'dark',
                 })}>{name}</Htag>
             </div>
-            <div className={styles.userInfoBlock2}>
-                <Htag tag='m' className={cn(styles.text, {
+            <Htag tag='s' className={cn(styles.text, {
                     [styles.darkThemeText]: theme === 'dark',
                 })}>
-                    {setLocale(router.locale).email + ': ' + email }
-                </Htag>
-                <Htag tag='s' className={cn(styles.text, {
-                    [styles.darkThemeText]: theme === 'dark',
-                })}>
-                    <span className={styles.logOut} onClick={() => {
-                        localStorage.clear();
-                        router.push('/');
-                    }}>
-                        {setLocale(router.locale).log_out}
-                    </span> / <span className={styles.changePassword}>
-                        {setLocale(router.locale).change_password}
-                    </span>
-                </Htag>
-            </div>
+                <span className={styles.logOut} onClick={() => {
+                    localStorage.clear();
+                    router.push('/');
+                }}>
+                    {setLocale(router.locale).log_out}
+                </span> / <span className={styles.changePassword}>
+                    {setLocale(router.locale).change_password}
+                </span>
+            </Htag>
         </div>
     )
 }
