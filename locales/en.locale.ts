@@ -66,4 +66,7 @@ export const en = {
     select_on_map: "Select on the map",
     order2: "Order",
     ordered: "Ordered",
+    already_exist: "A user with the same Username already exists",
+    incorrect_passwor: "Incorrect password",
+    no_user_found: "No user found with this name",
 };

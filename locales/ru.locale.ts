@@ -66,4 +66,7 @@ export const ru = {
     select_on_map: "Выбрать на карте",
     order2: "Заказать",
     ordered: "Заказано",
+    already_exist: "Пользователь с таким именем уже существует",
+    incorrect_passwor: "Неверный пароль",
+    no_user_found: "Не найдено пользователя с таким именем",
 };

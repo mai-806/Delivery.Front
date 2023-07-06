@@ -66,4 +66,7 @@ export const fr = {
     select_on_map: "Sélectionnez sur la carte",
     order2: "Commande",
     ordered: "Commandé",
+    already_exist: "Un utilisateur avec le même nom d'utilisateur existe déjà",
+    incorrect_passwor: "Mot de passe incorrect",
+    no_user_found: "Aucun utilisateur trouvé avec ce nom",
 };
