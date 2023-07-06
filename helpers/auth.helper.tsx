@@ -32,19 +32,19 @@ export async function loginUser(authData: Array<string>, router: any) {
         '/v1/user/?login=' + authData[2]);
 
     if (user.id !== undefined) {
-        // Такого эндпоинта ещё нет, нужно будет фиксить
-        let { data: isCompare }: AxiosResponse = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/user/compare/?id=' + user.id
-        + '&password=' + authData[0]);
-
-        if (isCompare.Compare === 'True') {
+        await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/v1/auth/register/?password='
+            + authData[0], {
+            login: authData[2],
+        }).then(function () {            
             localStorage.setItem('logged_in', 'true');
             localStorage.setItem('user_type', authData[3]);
             localStorage.setItem('user_id', String(user.id));
             router.push('/home');
-        } else {
+        })
+        .catch(function (error) {
             ToastError(setLocale(router.locale).incorrect_passwor + '!');
-        }
-
+            console.log("Ошибка HTTP при авторизации пользователя: " + error);
+        });
     } else {
         ToastError(setLocale(router.locale).no_user_found + '!');
     }
