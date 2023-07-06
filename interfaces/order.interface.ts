@@ -7,3 +7,14 @@ export interface OrderInterface {
     whereTo: string,
     details: string,
 }
+
+export interface OrderInterfaceV2 {
+    customerId: string,
+    start: OrderPos,
+    finish: OrderPos,
+}
+
+export interface OrderPos {
+    lon: number,
+    lat: number,
+}
