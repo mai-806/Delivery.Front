@@ -70,4 +70,7 @@ export const de = {
     incorrect_passwor: "Falsches Passwort",
     no_user_found: "Kein Benutzer mit diesem Namen gefunden",
     password_changed: "Passwort geändert",
+    available_orders: "Verfügbare Bestellungen",
+    accept: "Akzeptieren",
+    finish: "Beenden",
 };

@@ -1,9 +1,10 @@
 export interface OrderItemProps {
 	theme: string,
+	userType: 'customer' | 'executor' | 'admin',
 	orderNumber: number,
 	date: string,
 	customer: string,
-	address: string,
+	whereFrom: string,
+	whereTo: string,
 	details: string,
-	userType: 'customer' | 'executor' | 'admin',
 }

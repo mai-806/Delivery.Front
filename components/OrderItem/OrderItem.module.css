@@ -1,6 +1,6 @@
 .itemPage {
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: 1fr auto;
 	gap: 5px;
 	width: 90%;
 	border-radius: 27px;
@@ -19,6 +19,27 @@
 	transition-duration: 300ms;
 }
 
+.action {
+	font-weight: 400;
+	color: var(--primary);
+	cursor: pointer;
+	margin-right: 20px;
+	transition-duration: 300ms;
+}
+
+.actionActive {
+	color: var(--like);
+}
+
+.action:active {
+	color: var(--primaryDark);
+	transition-duration: 300ms;
+}
+
+.actionActive:active {
+	color: var(--error);
+}
+
 .text {
 	max-width: 450px;
 	font-weight: 200;
@@ -29,4 +50,15 @@
 .darkThemeText {
 	color: var(--white);
 	transition-duration: 300ms;
+}
+
+@media (min-width: 1024px) {
+	.action:hover {
+		color: var(--primaryDark);
+		transition-duration: 300ms;
+	}
+
+	.actionActive:hover {
+		color: var(--error);
+	}
 }

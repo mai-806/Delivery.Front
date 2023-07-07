@@ -9,9 +9,11 @@ import { Header } from 'components/Header/Header';
 import { OrderForm } from 'components/OrderForm/OrderForm';
 import { ToastSuccess } from "components/Toast/Toast";
 import { Toaster } from 'react-hot-toast';
-import cn from 'classnames';
 import { orderPost } from 'helpers/order.helper';
-import { OrderPos } from 'interfaces/order.interface';
+import { OrderInterface, OrderPos } from 'interfaces/order.interface';
+import { OrderList } from 'components/OrderList/OrderList';
+import { OrderItem } from 'components/OrderItem/OrderItem';
+import cn from 'classnames';
 
 
 export const HomePage = ({ theme, userType, userId }: HomePageProps): JSX.Element => {
@@ -34,6 +36,28 @@ export const HomePage = ({ theme, userType, userId }: HomePageProps): JSX.Elemen
     const [details, setDetails] = useState<string>('');
     const [isErrorWF, setIsErrorWF] = useState<boolean>(false);
     const [isErrorWT, setIsErrorWT] = useState<boolean>(false);
+
+    let order1: OrderInterface = {
+        id: 1,
+        date: '01/04/2023',
+        customer: 'Pavel Filippov',
+        executor: 'Noname',
+        whereFrom: 'Smolensk',
+        whereTo: 'Omsk',
+        details: 'None',
+    };
+
+    let order2: OrderInterface = {
+        id: 2,
+        date: '13/06/2023',
+        customer: 'DmitriMAI',
+        executor: 'Noname',
+        whereFrom: 'Smolensk',
+        whereTo: 'Orenburg',
+        details: 'None',
+    };
+
+    let orders: OrderInterface[] = [order1, order2];
 
     if (userType === 'customer') {
         return (
@@ -113,7 +137,13 @@ export const HomePage = ({ theme, userType, userId }: HomePageProps): JSX.Elemen
             <AppContextProvider theme={theme}>
                 <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
                 <div className={styles.homeWrapper}>
-                    Executor
+                    <OrderList theme={themeState}>
+                        {orders.map(o => (
+                            <OrderItem key={o.id} theme={themeState} userType={userType} orderNumber={o.id}
+                                date={o.date} customer={o.executor} whereFrom={o.whereFrom} whereTo={o.whereTo}
+                                details={o.details} />
+                        ))}
+                    </OrderList>
                 </div>
                 <Footer theme={themeState} />
             </AppContextProvider>
