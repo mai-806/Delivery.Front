@@ -10,9 +10,10 @@ import { CurrentOrderWindow } from 'components/CurrentOrderWindow/CurrentOrderWi
 import { OrderHistory } from 'components/OrderHistory/OrderHistory';
 import { OrderInterface } from 'interfaces/order.interface';
 import { OrderHistoryItem } from 'components/OrderHistoryItem/OrderHistoryItem';
+import { Toaster } from 'react-hot-toast';
 
 
-export const ProfilePage = ({ theme, userType, username }: ProfilePageProps): JSX.Element => {
+export const ProfilePage = ({ theme, userType, userId, username }: ProfilePageProps): JSX.Element => {
     const router = useRouter();
 
     const [themeState, setThemeState] = useState<string>(theme);
@@ -50,10 +51,17 @@ export const ProfilePage = ({ theme, userType, username }: ProfilePageProps): JS
     if (userType === 'customer') {
         return (
             <AppContextProvider theme={theme}>
+                <Toaster
+                    position="top-center"
+                    reverseOrder={true}
+                    toastOptions={{
+                        duration: 2000,
+                    }}
+                />
                 <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
                 <div className={styles.profileWrapper}>
                     <div className={styles.userInfoBlock}>
-                        <NicknameWindow theme={themeState} name={username} />
+                        <NicknameWindow theme={themeState} userId={userId} name={username} />
                         <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.id}
                             date={order1.date} customer={order1.executor} whereFrom={order1.whereFrom}
                             whereTo={order1.whereTo} details={order1.details} />
@@ -74,7 +82,7 @@ export const ProfilePage = ({ theme, userType, username }: ProfilePageProps): JS
                 <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
                 <div className={styles.profileWrapper}>
                     <div className={styles.userInfoBlock}>
-                        <NicknameWindow theme={themeState} name={username} />
+                        <NicknameWindow theme={themeState} userId={userId} name={username} />
                         <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.id}
                             date={order1.date} customer={order1.customer} whereFrom={order1.whereFrom}
                             whereTo={order1.whereTo} details={order1.details} />
