@@ -1,0 +1,32 @@
+.itemPage {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 5px;
+	width: 90%;
+	border-radius: 27px;
+	background: var(--lighter);
+	border: 1px solid var(--dark);
+	filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+	align-items: center;
+	justify-items: left;
+	padding: 20px;
+	transition-duration: 300ms;
+}
+
+.darkThemeItemPage {
+	background: var(--dark);
+	border: 1px solid var(--primary);
+	transition-duration: 300ms;
+}
+
+.text {
+	max-width: 450px;
+	font-weight: 200;
+	text-align: left;
+	transition-duration: 300ms;
+}
+
+.darkThemeText {
+	color: var(--white);
+	transition-duration: 300ms;
+}
