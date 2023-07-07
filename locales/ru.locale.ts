@@ -69,4 +69,5 @@ export const ru = {
     already_exist: "Пользователь с таким именем уже существует",
     incorrect_passwor: "Неверный пароль",
     no_user_found: "Не найдено пользователя с таким именем",
+    password_changed: "Пароль изменён",
 };

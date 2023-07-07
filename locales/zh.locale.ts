@@ -69,4 +69,5 @@ export const zh = {
     already_exist: "具有相同用户名的用户已存在",
     incorrect_passwor: "密码错误",
     no_user_found: "找不到具有该名称的用户",
+    password_changed: "密码已更改",
 };

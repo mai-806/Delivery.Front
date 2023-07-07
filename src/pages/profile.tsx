@@ -41,7 +41,7 @@ function Profile(): JSX.Element {
         <Head>
           <title>{process.env.NEXT_PUBLIC_TITLE + ' - ' + setLocale(router.locale).profile}</title>
         </Head>
-        <ProfilePage theme={theme} userType={userType} username={username} />
+        <ProfilePage theme={theme} userType={userType} userId={userId} username={username} />
       </>
     );
   } else {

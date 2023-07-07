@@ -69,4 +69,5 @@ export const en = {
     already_exist: "A user with the same Username already exists",
     incorrect_passwor: "Incorrect password",
     no_user_found: "No user found with this name",
+    password_changed: "Password changed",
 };
