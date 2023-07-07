@@ -9,9 +9,11 @@ export interface OrderInterface {
 }
 
 export interface OrderInterfaceV2 {
+    orderId: string,
     customerId: string,
     start: OrderPos,
     finish: OrderPos,
+    status: "new",
 }
 
 export interface OrderPos {

@@ -1,10 +1,10 @@
 import { HomePageProps } from './HomePage.props';
 import styles from './HomePage.module.css';
 import { useRouter } from 'next/router';
-import { AppContextProvider } from 'context/app.context';
+import { AppContext, AppContextProvider } from 'context/app.context';
 import { setLocale } from 'helpers/locale.helper';
 import { Footer } from 'components/Footer/Footer';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Header } from 'components/Header/Header';
 import { OrderForm } from 'components/OrderForm/OrderForm';
 import { ToastSuccess } from "components/Toast/Toast";
@@ -16,7 +16,7 @@ import { OrderItem } from 'components/OrderItem/OrderItem';
 import cn from 'classnames';
 
 
-export const HomePage = ({ theme, userType, userId }: HomePageProps): JSX.Element => {
+export const HomePage = ({ orders, theme, userType, userId }: HomePageProps): JSX.Element => {
     const router = useRouter();
 
     const [themeState, setThemeState] = useState<string>(theme);
@@ -57,11 +57,9 @@ export const HomePage = ({ theme, userType, userId }: HomePageProps): JSX.Elemen
         details: 'None',
     };
 
-    let orders: OrderInterface[] = [order1, order2];
-
     if (userType === 'customer') {
         return (
-            <AppContextProvider theme={theme}>
+            <AppContextProvider orders={orders} theme={theme}>
                 <Toaster
                     position="top-center"
                     reverseOrder={true}
@@ -134,23 +132,32 @@ export const HomePage = ({ theme, userType, userId }: HomePageProps): JSX.Elemen
         );
     } else if (userType === 'executor') {
         return (
-            <AppContextProvider theme={theme}>
-                <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
-                <div className={styles.homeWrapper}>
-                    <OrderList theme={themeState}>
-                        {orders.map(o => (
-                            <OrderItem key={o.id} theme={themeState} userType={userType} orderNumber={o.id}
-                                date={o.date} customer={o.executor} whereFrom={o.whereFrom} whereTo={o.whereTo}
-                                details={o.details} />
-                        ))}
-                    </OrderList>
-                </div>
-                <Footer theme={themeState} />
-            </AppContextProvider>
+            <>
+                <Toaster
+                    position="top-center"
+                    reverseOrder={true}
+                    toastOptions={{
+                        duration: 2000,
+                    }}
+                />
+                <AppContextProvider orders={orders} theme={theme}>
+                    <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
+                    <div className={styles.homeWrapper}>
+                        <OrderList theme={themeState}>
+                            {orders.map(o => (
+                                <OrderItem key={o.orderId} theme={themeState} userType={userType} orderNumber={+o.orderId}
+                                    customer={o.customerId} whereFrom={o.start.lon + ' ' + o.start.lat}
+                                    whereTo={o.finish.lon + ' ' + o.finish.lat} details={o.status} userId={userId} />
+                            ))}
+                        </OrderList>
+                    </div>
+                    <Footer theme={themeState} />
+                </AppContextProvider>
+            </>
         );
     } else {
         return (
-            <AppContextProvider theme={theme}>
+            <AppContextProvider orders={orders} theme={theme}>
                 <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
                 <div className={styles.homeWrapper}>
                     Admin
