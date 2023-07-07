@@ -1,11 +1,9 @@
-import { OrderPos } from "interfaces/order.interface";
-
 export interface OrderFormProps {
     theme: string,
     isMap: boolean,
-    whereFrom: OrderPos | undefined,
+    whereFrom: string,
     setWhereFrom: (e: any) => void,
-    whereTo: OrderPos | undefined,
+    whereTo: string,
     setWhereTo: (e: any) => void,
     details: string,
     setDetails: (e: any) => void,

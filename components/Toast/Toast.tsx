@@ -5,7 +5,6 @@ export const ToastSuccess = (message: string | undefined): void => {
         toast.error(message, {
             icon: '🤩',
             style: {
-                position: 'absolute',
                 borderRadius: '9999px',
                 color: 'var(--primary)',
             },
