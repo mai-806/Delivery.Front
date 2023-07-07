@@ -29,21 +29,11 @@ export const HomePage = ({ theme, userType, userId }: HomePageProps): JSX.Elemen
 
     const [isMap, setIsMap] = useState<boolean>(true);
 
-    const [whereFrom, setWhereFrom] = useState<string>('');
-	const [whereTo, setWhereTo] = useState<string>('');
+    const [whereFrom, setWhereFrom] = useState<OrderPos>();
+	const [whereTo, setWhereTo] = useState<OrderPos>();
     const [details, setDetails] = useState<string>('');
     const [isErrorWF, setIsErrorWF] = useState<boolean>(false);
     const [isErrorWT, setIsErrorWT] = useState<boolean>(false);
-
-    let start: OrderPos = {
-        lon: 180,
-        lat: 90.
-    }
-
-    let finish: OrderPos = {
-        lon: 180,
-        lat: 90.
-    }
 
     if (userType === 'customer') {
         return (
@@ -71,28 +61,46 @@ export const HomePage = ({ theme, userType, userId }: HomePageProps): JSX.Elemen
                     <button className={cn(styles.orderButton, {
                         [styles.darkThemeOrderButton]: themeState === 'dark',
                     })} onClick={() => {
-                        if (isMap) {
-                            ToastSuccess(setLocale(router.locale).ordered + '!');
-                        } else {
-                            if (+whereFrom === 0 || +whereTo === 0) {
-                                if (+whereFrom === 0) {
-                                    setIsErrorWF(true);
-                                } else {
-                                    setIsErrorWF(false);
-                                }
-                                if (+whereTo === 0) {
-                                    setIsErrorWT(true);
-                                } else {
-                                    setIsErrorWT(false);
-                                }
+                        if (whereFrom === undefined || whereTo === undefined) {
+                            if (whereFrom === undefined) {
+                                setIsErrorWF(true);
                             } else {
-                                ToastSuccess(setLocale(router.locale).ordered + '!');
                                 setIsErrorWF(false);
-                                setIsErrorWT(false);
-
-                                orderPost(userId, start, finish);
                             }
+                            if (whereTo === undefined) {
+                                setIsErrorWT(true);
+                            } else {
+                                setIsErrorWT(false);
+                            }
+                        } else {
+                            ToastSuccess(setLocale(router.locale).ordered + '!');
+                            setIsErrorWF(false);
+                            setIsErrorWT(false);
+                            orderPost(userId, whereFrom, whereTo);
                         }
+                        
+                        // if (isMap) {
+                        //     ToastSuccess(setLocale(router.locale).ordered + '!');
+                        // } else {
+                        //     if (+whereFrom === 0 || +whereTo === 0) {
+                        //         if (+whereFrom === 0) {
+                        //             setIsErrorWF(true);
+                        //         } else {
+                        //             setIsErrorWF(false);
+                        //         }
+                        //         if (+whereTo === 0) {
+                        //             setIsErrorWT(true);
+                        //         } else {
+                        //             setIsErrorWT(false);
+                        //         }
+                        //     } else {
+                        //         ToastSuccess(setLocale(router.locale).ordered + '!');
+                        //         setIsErrorWF(false);
+                        //         setIsErrorWT(false);
+
+                        //         orderPost(userId, start, finish);
+                        //     }
+                        // }
                     }}>
                         {setLocale(router.locale).order2}
                     </button>

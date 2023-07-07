@@ -14,20 +14,15 @@ export async function checkUser(authData: Array<string>, errType: CheckAuthInter
     } else {
         setError(errType);
         setLoading(true);
-        ToastSuccess(setLocale(router.locale).cool + '!');
-        setTimeout(() => {
-            setLoading(false);
-
-            if (isLogin) {
-                loginUser(authData, router);
-            } else {
-                registerUser(authData, router);
-            }
-        }, 1000);
+        if (isLogin) {
+            loginUser(authData, router, setLoading);
+        } else {
+            registerUser(authData, router, setLoading);
+        }
     }
 }
 
-export async function loginUser(authData: Array<string>, router: any) {
+export async function loginUser(authData: Array<string>, router: any, setLoading: (e: any) => void) {
     let { data: user }: AxiosResponse<UserInterface> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + 
         '/v1/user/?login=' + authData[2]);
 
@@ -35,9 +30,10 @@ export async function loginUser(authData: Array<string>, router: any) {
         await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/v1/auth/register/?password='
             + authData[0], {
             login: authData[2],
-        }).then(function () {            
+        }).then(function () {
+            ToastSuccess(setLocale(router.locale).cool + '!');
             localStorage.setItem('logged_in', 'true');
-            localStorage.setItem('user_type', authData[3]);
+            localStorage.setItem('user_type', user.userType);
             localStorage.setItem('user_id', String(user.id));
             router.push('/home');
         })
@@ -48,9 +44,10 @@ export async function loginUser(authData: Array<string>, router: any) {
     } else {
         ToastError(setLocale(router.locale).no_user_found + '!');
     }
+    setLoading(false);
 }
 
-export async function registerUser(authData: Array<string>, router: any) {
+export async function registerUser(authData: Array<string>, router: any, setLoading: (e: any) => void) {
     let { data: user }: AxiosResponse<UserInterface> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + 
         '/v1/user/?login=' + authData[2]);
 
@@ -59,7 +56,8 @@ export async function registerUser(authData: Array<string>, router: any) {
             + authData[0], {
             login: authData[2],
             user_type: authData[4],
-        }).then(function () {            
+        }).then(function () {
+            ToastSuccess(setLocale(router.locale).cool + '!');       
             localStorage.setItem('logged_in', 'true');
             localStorage.setItem('user_type', authData[3]);
             localStorage.setItem('user_id', String(user.id));
@@ -71,4 +69,5 @@ export async function registerUser(authData: Array<string>, router: any) {
     } else {
         ToastError(setLocale(router.locale).already_exist + '!');
     }
+    setLoading(false);
 }
