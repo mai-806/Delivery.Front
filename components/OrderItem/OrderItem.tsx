@@ -5,10 +5,11 @@ import { setLocale } from 'helpers/locale.helper';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import cn from 'classnames';
+import { orderAssign } from 'helpers/order.helper';
 
 
-export const OrderItem = ({ theme, userType, orderNumber, date, customer,
-	whereFrom, whereTo, details }: OrderItemProps): JSX.Element => {
+export const OrderItem = ({ theme, userType, orderNumber, customer,
+	whereFrom, whereTo, details, userId }: OrderItemProps): JSX.Element => {
 	const router = useRouter();
 	
 	const [isActive, setIsActive] = useState<boolean>(false);
@@ -20,7 +21,7 @@ export const OrderItem = ({ theme, userType, orderNumber, date, customer,
 			<div>
 				<Htag tag='s' className={cn(styles.text, {
 					[styles.darkThemeText]: theme === 'dark',
-				})}>{setLocale(router.locale).order + ' №' + orderNumber + ', ' + date}</Htag>
+				})}>{setLocale(router.locale).order + ' №' + orderNumber}</Htag>
 				<Htag tag='s' className={cn(styles.text, {
 					[styles.darkThemeText]: theme === 'dark',
 				})}>{(userType === 'customer' ? setLocale(router.locale).executor : setLocale(router.locale).customer) + ': ' + customer}</Htag>
@@ -36,7 +37,7 @@ export const OrderItem = ({ theme, userType, orderNumber, date, customer,
 			</div>
 			<Htag tag='l' className={cn(styles.action, {
 				[styles.actionActive]: isActive,
-			})} onClick={() => setIsActive(!isActive)}>
+			})} onClick={() => orderAssign(router, isActive, setIsActive, orderNumber, userId)}>
 				{isActive ? setLocale(router.locale).finish : setLocale(router.locale).accept}
 			</Htag>
 		</div>
