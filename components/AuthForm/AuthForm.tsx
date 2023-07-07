@@ -1,6 +1,5 @@
 import { AuthFormProps } from './AuthForm.props';
 import styles from './AuthForm.module.css';
-import cn from 'classnames';
 import { Input } from 'components/Input/Input';
 import { useState } from 'react';
 import { AuthButton } from 'components/AuthButton/AuthButton';
@@ -13,6 +12,11 @@ import { checkUser } from 'helpers/auth.helper';
 import { Htag } from 'components/Htag/Htag';
 import { AuthDelimiter } from 'components/AuthDelimiter/AuthDelimiter';
 import { UserTypeChange } from 'components/UserTypeChange/UserTypeChange';
+import { ToastError, ToastSuccess } from 'components/Toast/Toast';
+import { Modal } from 'components/Modal/Modal';
+import { changePasswordLogin } from 'helpers/change_password.helper';
+import cn from 'classnames';
+
 
 export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormProps): JSX.Element => {
 	const router = useRouter();
@@ -46,34 +50,95 @@ export const AuthForm = ({ type, setAuthState, className, ...props }: AuthFormPr
 		}
 	};
 
+	const [active, setActive] = useState<boolean>(false);
+	const [newUsername, setNewUsername] = useState<string>('');
+    const [newPassword, setNewPassword] = useState<string>('');
+    const [isErrorU, setIsErrorU] = useState<boolean>(false);
+	const [isErrorP, setIsErrorP] = useState<boolean>(false);
+
+	const handleKeyDown = (e: any) => {
+		if (e.key == 'Enter') {
+			if (+newUsername === 0 || +newPassword === 0 || newPassword.length < 8) {
+                if (+newUsername === 0) {
+					setIsErrorU(true);
+                	ToastError(setLocale(router.locale).error_name + '!');
+				} else {
+					setIsErrorU(false);
+				}
+				if (+newPassword === 0 || newPassword.length < 8) {
+					setIsErrorP(true);
+                	ToastError(setLocale(router.locale).error_password + '!');
+				} else {
+					setIsErrorP(false);
+				}
+            } else {
+                changePasswordLogin(router, newUsername, newPassword);
+                setActive(false);
+                setNewPassword('');
+				setNewUsername('');
+                setIsErrorU(false);
+				setIsErrorP(false);
+                ToastSuccess(setLocale(router.locale).password_changed + '!');
+            }
+		}
+	};
+
 	if (type === 'login') {
 		return (
-			<div className={cn(className, styles.authForm)} {...props}>
-				<div className={styles.logo} />
-				<Htag tag='xl' className={styles.welcome}>{setLocale(router.locale).welcome}</Htag>
-				<p className={styles.slogan}>В любую погоду, и в город, и в лес, посылку доставит МяуМяуЭкспресс :)</p>
-				<Input type='text' text={setLocale(router.locale).username}
-					value={username} error={error.errUsername} eye={false}
-					onChange={(e) => setUsername(e.target.value)} />
-				<InputWithEye onMouseEnter={() => setPswdType('text')}
-					onMouseLeave={() => setPswdType('password')}
-					onClick={() => {
-						if (pswdType !== 'text') {
-							setPswdType('text');
-						} else {
-							setPswdType('password');
-						}
-					}}>
-					<Input type={pswdType} text={setLocale(router.locale).password}
-						value={password} error={error.errPassword} eye={true}
-						onChange={(e) => setPassword(e.target.value)} />
-				</InputWithEye>
-				<AuthButton loading={loading} text={setLocale(router.locale).sign_in}
-					onClick={() => checkUser(authData, errType, router, setError, setLoading, true)} />
-				<Htag tag='s' className={styles.forgot}>{setLocale(router.locale).forgot_password}</Htag>
-				<AuthDelimiter />
-				<AuthFormChange type={'login'} onClick={() => setAuthState('registration')} />
-			</div>
+			<>
+				<div className={cn(className, styles.authForm)} {...props}>
+					<div className={styles.logo} />
+					<Htag tag='xl' className={styles.welcome}>{setLocale(router.locale).welcome}</Htag>
+					<p className={styles.slogan}>В любую погоду, и в город, и в лес, посылку доставит МяуМяуЭкспресс :)</p>
+					<Input type='text' text={setLocale(router.locale).username}
+						value={username} error={error.errUsername} eye={false}
+						onChange={(e) => setUsername(e.target.value)} />
+					<InputWithEye onMouseEnter={() => setPswdType('text')}
+						onMouseLeave={() => setPswdType('password')}
+						onClick={() => {
+							if (pswdType !== 'text') {
+								setPswdType('text');
+							} else {
+								setPswdType('password');
+							}
+						}}>
+						<Input type={pswdType} text={setLocale(router.locale).password}
+							value={password} error={error.errPassword} eye={true}
+							onChange={(e) => setPassword(e.target.value)} />
+					</InputWithEye>
+					<AuthButton loading={loading} text={setLocale(router.locale).sign_in}
+						onClick={() => checkUser(authData, errType, router, setError, setLoading, true)} />
+					<Htag tag='s' className={styles.forgot} onClick={() => setActive(true)}>
+						{setLocale(router.locale).forgot_password}
+					</Htag>
+					<AuthDelimiter />
+					<AuthFormChange type={'login'} onClick={() => setAuthState('registration')} />
+				</div>
+				<Modal active={active} setActive={setActive}>
+					<div className={styles.changeWrapper}>
+						<input className={cn(styles.input, {
+							[styles.error_input]: isErrorU,
+						})}
+							placeholder={setLocale(router.locale).username}
+							value={newUsername}
+							onChange={(e) => setNewUsername(e.target.value)}
+							type="text"
+							name="new username"
+							aria-label="new username"
+							onKeyDown={handleKeyDown} />
+						<input className={cn(styles.input, {
+							[styles.error_input]: isErrorP,
+						})}
+							placeholder={setLocale(router.locale).password}
+							value={newPassword}
+							onChange={(e) => setNewPassword(e.target.value)}
+							type="text"
+							name="new password"
+							aria-label="new password"
+							onKeyDown={handleKeyDown} />
+					</div>
+				</Modal>
+			</>
 		);
 	} else {
 		return (

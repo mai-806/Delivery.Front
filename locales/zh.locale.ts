@@ -70,4 +70,7 @@ export const zh = {
     incorrect_passwor: "密码错误",
     no_user_found: "找不到具有该名称的用户",
     password_changed: "密码已更改",
+    available_orders: "可用订单",
+    accept: "接受",
+    finish: "结束",
 };

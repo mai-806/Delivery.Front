@@ -70,4 +70,7 @@ export const ru = {
     incorrect_passwor: "Неверный пароль",
     no_user_found: "Не найдено пользователя с таким именем",
     password_changed: "Пароль изменён",
+    available_orders: "Доступные заказы",
+    accept: "Принять",
+    finish: "Закончить",
 };
