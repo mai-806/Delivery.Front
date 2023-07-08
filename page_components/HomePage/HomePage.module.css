@@ -95,6 +95,21 @@
     transition-duration: 300ms;
 }
 
+.map {
+    margin-top: 20px;
+    margin-bottom: -20px;
+	overflow: hidden;
+    width: 60%;
+    height: 500px;
+    background: var(--primary);
+    border-radius: 20px;
+    border: 1px solid var(--primaryDark);
+}
+
+.hidden {
+    display: none;
+}
+
 @media (min-width: 1024px) {
 	.button:hover {
         background: var(--primary);

@@ -3,8 +3,11 @@ export interface OrderItemProps {
 	userType: 'customer' | 'executor' | 'admin',
 	orderNumber: number,
 	customer: string,
-	whereFrom: string,
-	whereTo: string,
+	whereFromLon: number,
+	whereFromLat: number,
+	whereToLon: number,
+	whereToLat: number,
 	details: string,
 	userId: string,
+	setIsCourierMap: (e: any) => void,
 }
