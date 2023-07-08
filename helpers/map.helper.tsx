@@ -1,5 +1,8 @@
 import { load } from '@2gis/mapgl';
 import { Directions } from '@2gis/mapgl-directions';
+import axios, { AxiosResponse } from 'axios';
+import { OrderPos } from 'interfaces/order.interface';
+import { PathBodyInterface, PathInterface } from 'interfaces/path.interface';
 
 export async function map(theme: string, router: any, setWhereFrom: (e: any) => void,
     setWhereTo: (e: any) => void) {
@@ -85,6 +88,73 @@ export async function map(theme: string, router: any, setWhereFrom: (e: any) => 
                             m.destroy();
                         });
                     }
+                });
+            });
+        });
+    }
+}
+
+// courier: {
+//     id: couriesId,
+//     position: whereFrom,
+// },
+// end-coordinate: whereTo,
+
+let pathCourier: PathInterface;
+
+export async function getPath(courierId: string, whereFromLon: number, whereFromLat: number,
+    whereToLon: number, whereToLat: number) {
+    let pathBody: PathBodyInterface = {
+        courier: {
+            id: +courierId,
+            position: {
+                lon: whereFromLon,
+                lat: whereFromLat,
+            },
+        },
+        end_coordinate: {
+            lon: whereToLon,
+            lat: whereToLat,
+        },
+    }
+    let { data: path }: AxiosResponse<PathInterface> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/v1/path/', {
+        data: pathBody,
+    });
+
+    pathCourier = path
+}
+
+export async function mapCourier(theme: string, router: any, isCourierMap: boolean) {
+    let map: any;
+    let longitude: any;
+    let latitude: any;
+
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            longitude = position.coords.longitude;
+            latitude = position.coords.latitude;
+    
+            load().then((mapglAPI) => {
+                if (theme === 'light') {
+                    map = new mapglAPI.Map('mapCourier', {
+                        center: [longitude, latitude],
+                        zoom: 13,
+                        key: '784b7bf3-8e42-4f4c-8ba5-64aab1274cae',
+                        lang: router.locale,
+                        style: 'add11b0a-e1ad-4b39-8d87-3fa4c80550ce'
+                    });
+                } else {
+                    map = new mapglAPI.Map('mapCourier', {
+                        center: [longitude, latitude],
+                        zoom: 13,
+                        key: '784b7bf3-8e42-4f4c-8ba5-64aab1274cae',
+                        lang: router.locale,
+                        style: '2b68bd2c-5b29-41f5-acd7-510f1b15b5c7'
+                    });
+                }
+    
+                const directions = new Directions(map, {
+                    directionsApiKey: '784b7bf3-8e42-4f4c-8ba5-64aab1274cae',
                 });
             });
         });

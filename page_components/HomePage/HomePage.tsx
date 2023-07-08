@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { AppContext, AppContextProvider } from 'context/app.context';
 import { setLocale } from 'helpers/locale.helper';
 import { Footer } from 'components/Footer/Footer';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Header } from 'components/Header/Header';
 import { OrderForm } from 'components/OrderForm/OrderForm';
 import { ToastSuccess } from "components/Toast/Toast";
@@ -14,6 +14,7 @@ import { OrderInterface, OrderPos } from 'interfaces/order.interface';
 import { OrderList } from 'components/OrderList/OrderList';
 import { OrderItem } from 'components/OrderItem/OrderItem';
 import cn from 'classnames';
+import { mapCourier } from 'helpers/map.helper';
 
 
 export const HomePage = ({ orders, theme, userType, userId }: HomePageProps): JSX.Element => {
@@ -37,25 +38,11 @@ export const HomePage = ({ orders, theme, userType, userId }: HomePageProps): JS
     const [isErrorWF, setIsErrorWF] = useState<boolean>(false);
     const [isErrorWT, setIsErrorWT] = useState<boolean>(false);
 
-    let order1: OrderInterface = {
-        id: 1,
-        date: '01/04/2023',
-        customer: 'Pavel Filippov',
-        executor: 'Noname',
-        whereFrom: 'Smolensk',
-        whereTo: 'Omsk',
-        details: 'None',
-    };
+    const [isCourierMap, setIsCourierMap] = useState<boolean>(false);
 
-    let order2: OrderInterface = {
-        id: 2,
-        date: '13/06/2023',
-        customer: 'DmitriMAI',
-        executor: 'Noname',
-        whereFrom: 'Smolensk',
-        whereTo: 'Orenburg',
-        details: 'None',
-    };
+    useEffect(() => {
+        mapCourier(theme, router, isCourierMap);
+    }, [router]);
 
     if (userType === 'customer') {
         return (
@@ -143,11 +130,15 @@ export const HomePage = ({ orders, theme, userType, userId }: HomePageProps): JS
                 <AppContextProvider orders={orders} theme={theme}>
                     <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
                     <div className={styles.homeWrapper}>
+                        <div id='mapCourier' className={cn(styles.map, {
+                            [styles.hidden]: isCourierMap,
+                        })} />
                         <OrderList theme={themeState}>
                             {orders.map(o => (
                                 <OrderItem key={o.orderId} theme={themeState} userType={userType} orderNumber={+o.orderId}
-                                    customer={o.customerId} whereFrom={o.start.lon + ' ' + o.start.lat}
-                                    whereTo={o.finish.lon + ' ' + o.finish.lat} details={o.status} userId={userId} />
+                                    customer={o.customerId} whereFromLon={o.start.lon} whereFromLat={o.start.lat}
+                                    whereToLon={o.finish.lon} whereToLat={o.finish.lat} details={o.status} userId={userId}
+                                    setIsCourierMap={setIsCourierMap} />
                             ))}
                         </OrderList>
                     </div>

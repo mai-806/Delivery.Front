@@ -12,7 +12,7 @@ export const OrderForm = ({ theme, isMap, whereFrom, setWhereFrom,
     const router = useRouter();
 
     useEffect(() => {
-        map(theme, router,setWhereFrom, setWhereTo);
+        map(theme, router, setWhereFrom, setWhereTo);
     }, [router]);
 
     return (

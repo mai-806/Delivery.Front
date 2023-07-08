@@ -33,7 +33,7 @@ export async function orderGet(setOrders: (e: any) => void) {
 }
 
 export async function orderAssign(router: any, isActive: boolean, setIsActive: (e: any) => void,
-    orderId: number, userId: string) {
+    orderId: number, userId: string, setIsCourierMap: (e: any) => void) {
     if (!isActive) {
         await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/v1/couries/assign', {
             order_id: orderId,
@@ -45,7 +45,8 @@ export async function orderAssign(router: any, isActive: boolean, setIsActive: (
         await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/v1/order/change-status', {
             order_id: orderId,
             status: "waiting",
-        }).then(function () {            
+        }).then(function () {
+            setIsCourierMap(true);        
             setIsActive(true);
             ToastSuccess(setLocale(router.locale).cool + '!');
         })
@@ -56,7 +57,8 @@ export async function orderAssign(router: any, isActive: boolean, setIsActive: (
         await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/v1/order/change-status', {
             order_id: orderId,
             status: "finished",
-        }).then(function () {            
+        }).then(function () {
+            setIsCourierMap(false);             
             setIsActive(false);
             ToastSuccess(setLocale(router.locale).cool + '!');
         })
