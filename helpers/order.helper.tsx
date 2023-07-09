@@ -46,6 +46,7 @@ export async function orderAssign(router: any, isActive: boolean, setIsActive: (
             order_id: orderId,
             status: "waiting",
         }).then(function () {
+            localStorage.setItem("currentOrderId", String(orderId));
             setIsCourierMap(true);        
             setIsActive(true);
             ToastSuccess(setLocale(router.locale).cool + '!');
@@ -58,6 +59,7 @@ export async function orderAssign(router: any, isActive: boolean, setIsActive: (
             order_id: orderId,
             status: "finished",
         }).then(function () {
+            localStorage.removeItem("currentOrderId");
             setIsCourierMap(false);             
             setIsActive(false);
             ToastSuccess(setLocale(router.locale).cool + '!');

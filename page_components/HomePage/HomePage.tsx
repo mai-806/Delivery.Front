@@ -15,6 +15,7 @@ import { OrderList } from 'components/OrderList/OrderList';
 import { OrderItem } from 'components/OrderItem/OrderItem';
 import cn from 'classnames';
 import { mapCourier } from 'helpers/map.helper';
+import { addressHelper } from 'helpers/address.helper';
 
 
 export const HomePage = ({ orders, theme, userType, userId }: HomePageProps): JSX.Element => {
@@ -41,7 +42,9 @@ export const HomePage = ({ orders, theme, userType, userId }: HomePageProps): JS
     const [isCourierMap, setIsCourierMap] = useState<boolean>(false);
 
     useEffect(() => {
-        mapCourier(theme, router, isCourierMap);
+        if (userType === 'executor') {
+            mapCourier(theme, router);
+        }
     }, [router]);
 
     if (userType === 'customer') {
@@ -131,7 +134,7 @@ export const HomePage = ({ orders, theme, userType, userId }: HomePageProps): JS
                     <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
                     <div className={styles.homeWrapper}>
                         <div id='mapCourier' className={cn(styles.map, {
-                            [styles.hidden]: isCourierMap,
+                            [styles.hidden]: !isCourierMap,
                         })} />
                         <OrderList theme={themeState}>
                             {orders.map(o => (

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import cn from 'classnames';
 
 
-export const CurrentOrderWindow = ({ theme, userType, orderNumber, date, customer, whereFrom,
+export const CurrentOrderWindow = ({ theme, userType, orderNumber, customer, whereFrom,
     whereTo, details }: CurrentOrderProps): JSX.Element => {
     const router = useRouter();
 
@@ -21,7 +21,7 @@ export const CurrentOrderWindow = ({ theme, userType, orderNumber, date, custome
                 })}>{setLocale(router.locale).current_order + ':'}</Htag>
                 <Htag tag='s'className={cn(styles.text, {
                     [styles.darkThemeText]: theme === 'dark',
-                })}>{setLocale(router.locale).order + ' №' + orderNumber + ', ' + date}</Htag>
+                })}>{setLocale(router.locale).order + ' №' + orderNumber}</Htag>
                 <Htag tag='s'className={cn(styles.text, {
                     [styles.darkThemeText]: theme === 'dark',
                 })}>{(userType === 'customer' ? setLocale(router.locale).executor : setLocale(router.locale).customer) + ': ' + customer}</Htag>
