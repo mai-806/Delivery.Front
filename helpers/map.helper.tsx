@@ -1,7 +1,6 @@
 import { load } from '@2gis/mapgl';
 import { Directions } from '@2gis/mapgl-directions';
 import axios, { AxiosResponse } from 'axios';
-import { OrderPos } from 'interfaces/order.interface';
 import { PathBodyInterface, PathInterface } from 'interfaces/path.interface';
 
 export async function map(theme: string, router: any, setWhereFrom: (e: any) => void,
@@ -94,12 +93,6 @@ export async function map(theme: string, router: any, setWhereFrom: (e: any) => 
     }
 }
 
-// courier: {
-//     id: couriesId,
-//     position: whereFrom,
-// },
-// end-coordinate: whereTo,
-
 let pathCourier: PathInterface;
 
 export async function getPath(courierId: string, whereFromLon: number, whereFromLat: number,
@@ -117,12 +110,27 @@ export async function getPath(courierId: string, whereFromLon: number, whereFrom
             lat: whereToLat,
         },
     }
-    let { data: path }: AxiosResponse<PathInterface> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/v1/path/', {
-        data: pathBody,
-    });
+
+    let { data: path }: AxiosResponse<PathInterface> = await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/v1/path/', pathBody);
 
     pathCourier = path
 }
+
+// pathCourier = {
+//     courierId: 0,
+//     path: [
+//       {
+//         lon: 37.48016242966374,
+//         lat: 55.91275668569521
+//       },
+//       {
+//         lon: 37.76953296839845,
+//         lat: 55.911248239108865
+//       }
+//     ],
+//     time: 300,
+//     cost: 100.05
+// }
 
 export async function mapCourier(theme: string, router: any, isCourierMap: boolean) {
     let map: any;
@@ -137,7 +145,7 @@ export async function mapCourier(theme: string, router: any, isCourierMap: boole
             load().then((mapglAPI) => {
                 if (theme === 'light') {
                     map = new mapglAPI.Map('mapCourier', {
-                        center: [longitude, latitude],
+                        center: [pathCourier?.path[0].lon, pathCourier?.path[0].lat],
                         zoom: 13,
                         key: '784b7bf3-8e42-4f4c-8ba5-64aab1274cae',
                         lang: router.locale,
@@ -155,6 +163,19 @@ export async function mapCourier(theme: string, router: any, isCourierMap: boole
     
                 const directions = new Directions(map, {
                     directionsApiKey: '784b7bf3-8e42-4f4c-8ba5-64aab1274cae',
+                });
+
+                let pathDots = [];
+
+                for (let i = 0; i < pathCourier?.path.length; i++) {
+                    let dot = [];
+                    dot.push(pathCourier?.path[i].lon);
+                    dot.push(pathCourier?.path[i].lat);
+                    pathDots.push(dot);
+                }
+
+                directions.carRoute({
+                    points: pathDots,
                 });
             });
         });
