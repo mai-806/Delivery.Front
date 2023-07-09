@@ -116,21 +116,21 @@ export async function getPath(courierId: string, whereFromLon: number, whereFrom
     pathCourier = path
 }
 
-// pathCourier = {
-//     courierId: 0,
-//     path: [
-//       {
-//         lon: 37.48016242966374,
-//         lat: 55.91275668569521
-//       },
-//       {
-//         lon: 37.76953296839845,
-//         lat: 55.911248239108865
-//       }
-//     ],
-//     time: 300,
-//     cost: 100.05
-// }
+pathCourier = {
+    courierId: 0,
+    path: [
+      {
+        lon: 37.48016242966374,
+        lat: 55.91275668569521
+      },
+      {
+        lon: 37.76953296839845,
+        lat: 55.911248239108865
+      }
+    ],
+    time: 300,
+    cost: 100.05
+}
 
 export async function mapCourier(theme: string, router: any, isCourierMap: boolean) {
     let map: any;

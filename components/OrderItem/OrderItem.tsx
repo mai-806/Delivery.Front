@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { orderAssign } from 'helpers/order.helper';
 import cn from 'classnames';
 import { getPath } from 'helpers/map.helper';
+import { addressHelper } from 'helpers/address.helper';
 
 
 export const OrderItem = ({ theme, userType, orderNumber, customer,
@@ -28,10 +29,10 @@ export const OrderItem = ({ theme, userType, orderNumber, customer,
 				})}>{(userType === 'customer' ? setLocale(router.locale).executor : setLocale(router.locale).customer) + ': ' + customer}</Htag>
 				<Htag tag='s' className={cn(styles.text, {
 					[styles.darkThemeText]: theme === 'dark',
-				})}>{setLocale(router.locale).where_from + ': ' + whereFromLon + ' ' + whereFromLat}</Htag>
+				})}>{setLocale(router.locale).where_from + ': ' + addressHelper(whereFromLon, whereFromLat)}</Htag>
 				<Htag tag='s' className={cn(styles.text, {
 					[styles.darkThemeText]: theme === 'dark',
-				})}>{setLocale(router.locale).where_to + ': ' + whereToLon + ' ' + whereToLat}</Htag>
+				})}>{setLocale(router.locale).where_to + ': ' + addressHelper(whereToLon, whereToLat)}</Htag>
 				<Htag tag='s' className={cn(styles.text, {
 					[styles.darkThemeText]: theme === 'dark',
 				})}>{setLocale(router.locale).details + ': ' + details}</Htag>
