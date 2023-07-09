@@ -17,6 +17,6 @@ export interface OrderInterfaceV2 {
 }
 
 export interface OrderPos {
-    lon: number,
-    lat: number,
+    lon: any,
+    lat: any,
 }

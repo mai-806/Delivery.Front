@@ -2,7 +2,7 @@ import { OrderPos } from "./order.interface"
 
 export interface PathInterface {
     courierId: number,
-    path: OrderPos,
+    path: OrderPos[],
     time: number,
     cost: number,
 }
