@@ -31,6 +31,12 @@
 }
 
 .avatar {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    color: var(--primaryDark);
+    font-size: 32px;
+    font-weight: 600;
     height: 70px;
     width: 70px;
     border-radius: 50%;

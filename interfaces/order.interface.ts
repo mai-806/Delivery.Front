@@ -1,6 +1,6 @@
 export interface OrderInterface {
     id: number,
-    date: string,
+    date?: string,
     customer: string,
     executor: string,
     whereFrom: string,

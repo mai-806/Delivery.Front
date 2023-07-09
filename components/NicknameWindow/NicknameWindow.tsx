@@ -3,7 +3,7 @@ import { Htag } from 'components/Htag/Htag';
 import styles from './NicknameWindow.module.css';
 import { setLocale } from 'helpers/locale.helper';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import { ToastError, ToastSuccess } from 'components/Toast/Toast';
 import { changePassword } from 'helpers/change_password.helper';
@@ -12,6 +12,16 @@ import cn from 'classnames';
 
 export const NicknameWindow = ({ theme, userId, name }: UserProfileProps): JSX.Element => {
     const router = useRouter();
+
+    const [currentOrderId, setCurrentOrderId] = useState<string>('');
+
+    useEffect(() => {
+        let currentId = localStorage.getItem('setCurrentOrderId');
+
+        if (currentId) {
+            setCurrentOrderId(currentId);
+        }
+    }, []);
 
     const [active, setActive] = useState<boolean>(false);
     const [newPassword, setNewPassword] = useState<string>('');
@@ -40,7 +50,7 @@ export const NicknameWindow = ({ theme, userId, name }: UserProfileProps): JSX.E
                 <div className={styles.userInfoBlock1}>
                     <div className={cn(styles.avatar, {
                         [styles.darkThemeAvatar]: theme === 'dark',
-                    })} />
+                    })}>{name[0]?.toUpperCase()}</div>
                     <Htag tag='l'className={cn(styles.username, {
                         [styles.darkThemeUsername]: theme === 'dark',
                     })}>{name}</Htag>
@@ -50,6 +60,11 @@ export const NicknameWindow = ({ theme, userId, name }: UserProfileProps): JSX.E
                     })}>
                     <span className={styles.logOut} onClick={() => {
                         localStorage.clear();
+                        
+                        if (+currentOrderId !== 0) {
+                            localStorage.setItem('currentOrderId', currentOrderId);
+                        }
+
                         router.push('/');
                     }}>
                         {setLocale(router.locale).log_out}

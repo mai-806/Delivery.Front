@@ -132,7 +132,7 @@ pathCourier = {
     cost: 100.05
 }
 
-export async function mapCourier(theme: string, router: any, isCourierMap: boolean) {
+export async function mapCourier(theme: string, router: any) {
     let map: any;
     let longitude: any;
     let latitude: any;

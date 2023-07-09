@@ -4,17 +4,28 @@ import { AppContextProvider } from 'context/app.context';
 import { useRouter } from 'next/router';
 import { Footer } from 'components/Footer/Footer';
 import { Header } from 'components/Header/Header';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NicknameWindow } from 'components/NicknameWindow/NicknameWindow';
 import { CurrentOrderWindow } from 'components/CurrentOrderWindow/CurrentOrderWindow';
 import { OrderHistory } from 'components/OrderHistory/OrderHistory';
 import { OrderInterface } from 'interfaces/order.interface';
 import { OrderHistoryItem } from 'components/OrderHistoryItem/OrderHistoryItem';
 import { Toaster } from 'react-hot-toast';
+import { currentOrder } from 'helpers/current_order.helper';
 
 
 export const ProfilePage = ({ theme, userType, userId, username }: ProfilePageProps): JSX.Element => {
     const router = useRouter();
+
+    const [currentOrderNumber, setCurrentOrderNumber] = useState<string>('');
+    const [currentCustomer, setCurrentCustomer] = useState<string>('');
+    const [currentWF, setCurrentWF] = useState<string>('');
+    const [currentWT, setCurrentWT] = useState<string>('');
+    const [currentDetails, setCurrentDetails] = useState<string>('');
+
+    useEffect(() => {
+        currentOrder(setCurrentOrderNumber, setCurrentCustomer, setCurrentWF, setCurrentWT, setCurrentDetails);
+    }, []);
 
     const [themeState, setThemeState] = useState<string>(theme);
 
@@ -28,7 +39,6 @@ export const ProfilePage = ({ theme, userType, userId, username }: ProfilePagePr
 
     let order1: OrderInterface = {
         id: 1,
-        date: '01/04/2023',
         customer: 'Pavel Filippov',
         executor: 'Noname',
         whereFrom: 'Smolensk',
@@ -38,7 +48,6 @@ export const ProfilePage = ({ theme, userType, userId, username }: ProfilePagePr
 
     let order2: OrderInterface = {
         id: 2,
-        date: '13/06/2023',
         customer: 'DmitriMAI',
         executor: 'Noname',
         whereFrom: 'Smolensk',
@@ -62,14 +71,14 @@ export const ProfilePage = ({ theme, userType, userId, username }: ProfilePagePr
                 <div className={styles.profileWrapper}>
                     <div className={styles.userInfoBlock}>
                         <NicknameWindow theme={themeState} userId={userId} name={username} />
-                        <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.id}
-                            date={order1.date} customer={order1.executor} whereFrom={order1.whereFrom}
-                            whereTo={order1.whereTo} details={order1.details} />
+                        <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={currentOrderNumber}
+                            customer={currentCustomer} whereFrom={currentWF}
+                            whereTo={currentWT} details={currentDetails} />
                     </div>
                     <OrderHistory theme={themeState}>
                         {orders.map(o => (
                             <OrderHistoryItem key={o.id} theme={themeState} userType={userType} orderNumber={o.id}
-                                date={o.date} customer={o.executor} address={o.whereTo} details={o.details} />
+                                customer={o.executor} address={o.whereTo} details={o.details} />
                         ))}
                     </OrderHistory>
                 </div>
@@ -83,14 +92,14 @@ export const ProfilePage = ({ theme, userType, userId, username }: ProfilePagePr
                 <div className={styles.profileWrapper}>
                     <div className={styles.userInfoBlock}>
                         <NicknameWindow theme={themeState} userId={userId} name={username} />
-                        <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={order1.id}
-                            date={order1.date} customer={order1.customer} whereFrom={order1.whereFrom}
-                            whereTo={order1.whereTo} details={order1.details} />
+                        <CurrentOrderWindow theme={themeState} userType={userType} orderNumber={currentOrderNumber}
+                            customer={currentCustomer} whereFrom={currentWF}
+                            whereTo={currentWT} details={currentDetails} />
                     </div>
                     <OrderHistory theme={themeState}>
                         {orders.map(o => (
                             <OrderHistoryItem key={o.id} theme={themeState} userType={userType} orderNumber={o.id}
-                                date={o.date} customer={o.customer} address={o.whereTo} details={o.details} />
+                                customer={o.customer} address={o.whereTo} details={o.details} />
                         ))}
                     </OrderHistory>
                 </div>
@@ -99,7 +108,15 @@ export const ProfilePage = ({ theme, userType, userId, username }: ProfilePagePr
         );
     } else {
         return (
-            <></>
+            <AppContextProvider theme={theme}>
+                <Header theme={themeState} newTheme={newTheme} setThemeState={setThemeState} />
+                <div className={styles.profileWrapper}>
+                    <div className={styles.userInfoBlock}>
+                        <NicknameWindow theme={themeState} userId={userId} name={username} />
+                    </div>
+                </div>
+                <Footer theme={themeState} />
+            </AppContextProvider>
         );
     }
 };
